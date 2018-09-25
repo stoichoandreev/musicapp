@@ -1,0 +1,29 @@
+<?xml version="1.0"?><!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+    <suppress checks="[a-zA-Z0-9]*" files="Track.java"/>
+    <suppress checks="[a-zA-Z0-9]*" files="Base64.java"/>
+    <suppress checks="[a-zA-Z0-9]*" files="FragmentBreadCrumbs.java"/>
+
+    <suppress files="src/test/java/.*/.*Test\.java" checks="MethodNameCheck"/>
+    <suppress files="src/test/java/.*/.*Test\.java" checks="MagicNumber"/>
+    <suppress files="src/test/java/.*/.*Test\.java" checks="LineLength"/>
+    <suppress files="src/androidTest/java/.*/.*Test\.java" checks="MethodNameCheck"/>
+    <suppress files="src/androidTest/java/.*/.*Test\.java" checks="MagicNumber"/>
+    <suppress files="src/androidTest/java/.*/.*Test\.java" checks="LineLength"/>
+    <suppress files="src/test/java/.*/.*Tests\.java" checks="MethodNameCheck"/>
+    <suppress files="src/test/java/.*/.*Tests\.java" checks="MagicNumber"/>
+    <suppress files="src/test/java/.*/.*Tests\.java" checks="LineLength"/>
+    <suppress files="src/androidTest/java/.*/.*Tests\.java" checks="MethodNameCheck"/>
+    <suppress files="src/androidTest/java/.*/.*Tests\.java" checks="MagicNumber"/>
+    <suppress files="src/androidTest/java/.*/.*Tests\.java" checks="LineLength"/>
+
+    <suppress files="[\\/]androidTest[\\/]" checks="[a-zA-Z0-9]*"/>
+    <suppress files="[\\/]test[\\/]" checks="[a-zA-Z0-9]*"/>
+    <suppress files="[\\/]generated[\\/]" checks="[a-zA-Z0-9]*"/>
+    <suppress files="[\\/]build[\\/]" checks="[a-zA-Z0-9]*"/>
+
+</suppressions>

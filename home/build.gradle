@@ -1,0 +1,42 @@
+apply plugin: 'com.android.feature'
+apply from: '../config/android_library_quality.gradle'
+
+android {
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    lintOptions {
+        lintConfig file('../config/lint/lint.xml')
+    }
+
+}
+
+dependencies {
+    api project(':base')
+
+    annotationProcessor rootProject.libraries.daggerCompiler
+    annotationProcessor rootProject.libraries.javaxAnnotationProcessor
+}

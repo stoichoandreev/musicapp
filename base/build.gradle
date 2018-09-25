@@ -1,0 +1,71 @@
+apply plugin: 'com.android.feature'
+apply from: '../config/android_library_quality.gradle'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    baseFeature true
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        lintConfig file('../config/lint/lint.xml')
+    }
+
+}
+
+configurations.all {
+    resolutionStrategy {
+        force rootProject.libraries.supportAnnotations
+        force rootProject.libraries.supportCardView
+        force rootProject.libraries.supportDesign
+        force rootProject.libraries.supportAppcompatV7
+        force rootProject.libraries.supportRecyclerView
+        force rootProject.libraries.supportConstrtaintLayout
+    }
+}
+
+dependencies {
+    api rootProject.libraries.supportRecyclerView
+    api rootProject.libraries.supportConstrtaintLayout
+    api rootProject.libraries.supportAnnotations
+    api rootProject.libraries.supportCardView
+    api rootProject.libraries.supportDesign
+    api rootProject.libraries.supportAppcompatV7
+
+    api rootProject.ext.libraries.rxJava2
+
+    api rootProject.libraries.dagger
+    annotationProcessor rootProject.libraries.daggerCompiler
+    annotationProcessor rootProject.libraries.javaxAnnotationProcessor
+
+    commonTestDependencies(it)
+    commonAndroidTestDependencies(it)
+    androidTestAnnotationProcessor rootProject.libraries.daggerCompiler
+    testAnnotationProcessor rootProject.libraries.daggerCompiler
+
+    application project(':app')
+    feature project(':home')
+    feature project(':details')
+
+    implementation project(':api')
+}

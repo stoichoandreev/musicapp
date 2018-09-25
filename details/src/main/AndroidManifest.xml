@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.sniper.music.details">
+
+    <application>
+        <activity android:name=".DetailsActivity">
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="com.sniper.music"
+                    android:pathPattern="/details"
+                    android:scheme="https"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

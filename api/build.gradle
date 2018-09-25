@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply from: '../config/java_module_quality.gradle'
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+
+    compile rootProject.libraries.gson
+    compile rootProject.libraries.okhttp
+    compile rootProject.libraries.retrofit
+    compile rootProject.libraries.retrofitRxAdapter
+    compile rootProject.libraries.retrofitGSONConverter
+    compile rootProject.libraries.okhttpLoggingInterceptor
+
+    compile rootProject.libraries.supportAnnotations
+}

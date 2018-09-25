@@ -1,0 +1,36 @@
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
+
+def configDir = new File(rootDir, 'config')
+ext.checkstyleConfigDir = "$configDir/checkstyle"
+
+checkstyle {
+    toolVersion = 6.18
+    configFile = new File(checkstyleConfigDir, "checkstyle.xml")
+    configProperties.checkstyleConfigDir = checkstyleConfigDir
+}
+
+android.libraryVariants.all { variant ->
+    def checkStyleString = 'checkstyle' + variant.name.capitalize() + 'Main'
+    def checkStyleTask = project.tasks.create(checkStyleString, Checkstyle) {
+        source variant.javaCompile.source
+        include '**/*.java'
+        exclude '**/build/**'
+        exclude '**/R.java'
+        exclude '**/BuildConfig.java'
+        exclude '**/Manifest.java'
+
+        classpath = project.files(variant.javaCompile.destinationDir)
+    }
+
+    check.dependsOn checkStyleTask
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled true
+        // the html reports groups warnings and errors under "errors" and you cannot see what is the error that is
+        // actually causing the build to fail (even in the output in the console)
+        html.enabled false
+    }
+}

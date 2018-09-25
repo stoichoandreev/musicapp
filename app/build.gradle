@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+apply from: '../config/android_application_quality.gradle'
+
+android {
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.sniper.music"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        versionCode rootProject.ext.versionCode as Integer
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        resConfigs "en"
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+
+dependencies {
+
+    implementation project(':home')
+    implementation project(':details')
+
+}

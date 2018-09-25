@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.sniper.music.home">
+
+    <application>
+        <activity android:name=".HomeActivity">
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <data
+                    android:host="com.sniper.music"
+                    android:pathPattern="/home"
+                    android:scheme="https"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

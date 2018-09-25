@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
+    }
+}
+
+def versionProperties = new Properties()
+file("version.properties").withInputStream { versionProperties.load(it) }
+project.ext.versionMajor = versionProperties.getProperty("versionMajor")
+project.ext.versionMinor = versionProperties.getProperty("versionMinor")
+project.ext.versionPatch = versionProperties.getProperty("versionPatch")
+project.ext.versionCode = versionProperties.getProperty("versionCode")
+project.ext.versionName = "${project.ext.versionMajor}.${project.ext.versionMinor}.${project.ext.versionPatch}"
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+apply from: 'dependencies.gradle'

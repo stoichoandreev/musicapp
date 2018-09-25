@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="CallNeedsPermission" severity="ignore" />
+    <issue id="RtlSymmetry" severity="ignore" />
+    <issue id="RtlHardcoded" severity="ignore" />
+    <issue id="ResourceType">
+        <ignore regexp="build/generated/.*\$\$ViewBinder\.java" />
+    </issue>
+    <issue id="WrongConstant" severity="ignore">
+        <ignore regexp=".*/androidTest/.*\.java" />
+    </issue>
+    <issue id="InvalidPackage">
+        <ignore regexp=".*okio.*" />
+        <ignore regexp=".*simple-xml.*" />
+        <ignore regexp=".*junit.*" />
+    </issue>
+
+    <issue id="MissingTranslation" severity="ignore" />
+    <issue id="PrivateResource" severity="ignore" />
+
+    <issue id="UnusedResources">
+        <ignore regexp="ebk*" />
+    </issue>
+
+    <issue id="InvalidPackage">
+        <ignore regexp="java.lang.instrument" />
+        <ignore regexp="javax\.inject" />
+        <ignore regexp="java.nio.file" />
+        <ignore regexp="java.lang.invoke" />
+    </issue>
+
+    <issue id="NewApi">
+        <ignore regexp="Try-with-resources requires API level 19" />
+    </issue>
+
+    <issue id="InvalidVectorPath" severity="warning" />
+    <issue id="AppLinkUrlError" severity="warning" />
+    <issue id="RestrictedApi" severity="warning" />
+    <issue id="GradleCompatible" severity="warning" />
+</lint>
