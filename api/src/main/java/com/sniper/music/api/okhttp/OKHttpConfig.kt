@@ -1,4 +1,4 @@
-package com.sniper.music.api
+package com.sniper.music.api.okhttp
 
 interface OKHttpConfig {
 

@@ -1,5 +1,7 @@
-package com.sniper.music.api
+package com.sniper.music.api.lastFm
 
+import com.sniper.music.api.ApiConfiguration
+import com.sniper.music.api.RetrofitClient
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Converter
@@ -11,7 +13,7 @@ class LastFMClient(converterFactory: Converter.Factory,
                    config: ApiConfiguration) : RetrofitClient {
 
     private val restAdapter: Retrofit = Retrofit.Builder()
-            .baseUrl(config.baseURL.toExternalForm())
+            .baseUrl(config.baseURL)
             .addConverterFactory(converterFactory)
             .addCallAdapterFactory(callAdapterFactory)
             .client(okHttpClient)
@@ -20,8 +22,9 @@ class LastFMClient(converterFactory: Converter.Factory,
 
     companion object {
         public const val NAME = "LastFMClient"
-        public const val GSON_CONVERTER_FACTORY = "GSONConverterFactory"
-        public const val RX_CALL_ADAPTER_FACTORY = "RXLastFMCallAdapterFactory"
+        public const val GSON_CONVERTER_FACTORY = "LastFMGSONConverterFactory"
+        public const val RX_CALL_ADAPTER_FACTORY = "LastFMRXLastFMCallAdapterFactory"
+        public const val API_CONFIGURATION = "LastFMApiConfiguration"
     }
 
     override fun <T> api(service: Class<T>): T {
