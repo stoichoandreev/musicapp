@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="menu_divider_color">@color/text_color_primary</color>
+
+    <color name="grey">#9C9C9C</color>
+    <color name="light_grey">#ECECEC</color>
+    <color name="dark_grey">#7C7C7C</color>
+    <color name="purple">#E25DB1</color>
+
+    <color name="text_color_primary">#CCCCCC</color>
+    <color name="window_background">@android:color/white</color>
 </resources>
