@@ -6,10 +6,11 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sniper.music.api.ApiConfiguration;
-import com.sniper.music.api.DefaultOkHttpConfig;
-import com.sniper.music.api.LastFMClient;
-import com.sniper.music.api.LastFMClientInterceptor;
-import com.sniper.music.api.OKHttpConfig;
+import com.sniper.music.api.lastFm.LastFMApiConfiguration;
+import com.sniper.music.api.okhttp.DefaultOkHttpConfig;
+import com.sniper.music.api.lastFm.LastFMClient;
+import com.sniper.music.api.lastFm.LastFMClientInterceptor;
+import com.sniper.music.api.okhttp.OKHttpConfig;
 import com.sniper.music.api.RetrofitClient;
 import com.sniper.music.base.BuildConfig;
 import com.sniper.music.base.di.ApplicationScope;
@@ -120,11 +121,18 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
+    @Named(LastFMClient.API_CONFIGURATION)
+    static ApiConfiguration provideLastFMApiConfiguration() {
+        return new LastFMApiConfiguration(BuildConfig.DEBUG);
+    }
+
+    @Provides
+    @ApplicationScope
     @Named(LastFMClient.NAME)
     static RetrofitClient provideLastFMClient(@NonNull @Named(LastFMClient.GSON_CONVERTER_FACTORY) Converter.Factory converterFactory,
                                               @NonNull @Named(LastFMClient.RX_CALL_ADAPTER_FACTORY) CallAdapter.Factory callAdapterFactory,
                                               @NonNull OkHttpClient okHttpClient,
-                                              @NonNull ApiConfiguration apiConfig) {
+                                              @NonNull @Named(LastFMClient.API_CONFIGURATION) ApiConfiguration apiConfig) {
         return new LastFMClient(converterFactory, callAdapterFactory, okHttpClient, apiConfig);
     }
 }
