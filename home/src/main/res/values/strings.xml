@@ -1,6 +1,5 @@
 <resources>
     <string name="home_screen_title">Home</string>
     <string name="search_title">Search here</string>
-    <string name="search_hint">Keyword - artist, song ....</string>
-    <string name="speak_voice">Please say some keyword</string>
+    <string name="artist_image_content_description">Artist image</string>
 </resources>

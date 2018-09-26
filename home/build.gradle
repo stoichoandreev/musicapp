@@ -40,3 +40,5 @@ dependencies {
     annotationProcessor rootProject.libraries.daggerCompiler
     annotationProcessor rootProject.libraries.javaxAnnotationProcessor
 }
+
+task preCommit(dependsOn: ['testDebugUnitTest', 'assembleDebugAndroidTest'])

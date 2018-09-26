@@ -1,11 +1,18 @@
 buildscript {
+    ext.kotlin_plugin_version = "1.2.71"
+    ext.build_tools_plugin_version = "3.2.0"
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath "com.android.tools.build:gradle:$build_tools_plugin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version"
     }
+}
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.0.0.RC6-3")
 }
 
 def versionProperties = new Properties()
@@ -25,6 +32,14 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+detekt {
+    version = "1.0.0.RC6-3"
+    profile("main") {
+        config = "$projectDir/default-detekt-config.yml"
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    }
 }
 
 apply from: 'dependencies.gradle'

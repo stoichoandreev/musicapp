@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MusicApp</string>
+    <string name="search_hint">Keyword - artist, song ....</string>
+    <string name="speak_voice">Please say some keyword</string>
 </resources>
