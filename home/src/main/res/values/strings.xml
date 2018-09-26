@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">home</string>
+    <string name="home_screen_title">Home</string>
+    <string name="search_title">Search here</string>
+    <string name="artist_image_content_description">Artist image</string>
 </resources>

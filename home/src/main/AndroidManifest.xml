@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.sniper.music.home">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sniper.music.home">
 
     <application>
-        <activity android:name=".HomeActivity">
+        <activity
+            android:name=".HomeActivity"
+            android:launchMode="singleTop">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.SEARCH"/>
 
-                <data
-                    android:host="com.sniper.music"
-                    android:pathPattern="/home"
-                    android:scheme="https"/>
             </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable">
+            </meta-data>
         </activity>
+        <provider
+            android:name="com.sniper.music.home.search.KeywordSuggestionProvider"
+            android:authorities="com.sniper.music.home.search.KeywordSuggestionProvider"
+            android:exported="false"
+            android:enabled="true"/>
     </application>
 
 </manifest>

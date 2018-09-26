@@ -1,9 +1,14 @@
-apply plugin: 'java'
-apply from: '../config/java_module_quality.gradle'
+apply plugin: "kotlin"
 
 compileJava {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
 }
 
 dependencies {
@@ -15,5 +20,6 @@ dependencies {
     compile rootProject.libraries.retrofitGSONConverter
     compile rootProject.libraries.okhttpLoggingInterceptor
 
-    compile rootProject.libraries.supportAnnotations
 }
+
+task preCommit(dependsOn: test)
