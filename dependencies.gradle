@@ -19,7 +19,7 @@ ext {
 
     jUnitVersion = '4.12'
     mockitoVersion = '2.22.0'
-    powerMockVersion = '1.7.1'
+    powerMockVersion = '2.0.0-beta.5'
     jUnitRunnerVersion = '1.0.2'
     espressoVersion = '3.0.2'
     mockServerVersion = '3.5.0'
@@ -54,7 +54,7 @@ ext {
             JUnit                   : "junit:junit:$jUnitVersion",
             mockitoCore             : "org.mockito:mockito-core:$mockitoVersion",
             powerMockCore           : "org.powermock:powermock-core:$powerMockVersion",
-            powerMockMockito        : "org.powermock:powermock-api-mockito:$powerMockVersion",
+            powerMockMockito        : "org.powermock:powermock-api-mockito2:$powerMockVersion",
             powerMockModuleJunit4   : "org.powermock:powermock-module-junit4:$powerMockVersion",
             assertJCore             : "org.assertj:assertj-core:$assertJVersion",
 

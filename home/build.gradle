@@ -32,6 +32,10 @@ android {
         lintConfig file('../config/lint/lint.xml')
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -39,6 +43,9 @@ dependencies {
 
     annotationProcessor rootProject.libraries.daggerCompiler
     annotationProcessor rootProject.libraries.javaxAnnotationProcessor
+
+    commonTestDependencies(it)
+    commonAndroidTestDependencies(it)
 }
 
 task preCommit(dependsOn: ['testDebugUnitTest', 'assembleDebugAndroidTest'])

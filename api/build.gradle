@@ -9,6 +9,7 @@ test {
     testLogging {
         showStandardStreams = true
     }
+    systemProperty 'LAST_FM_API_KEY', 'b9304bb9f3e9c5397188fbb0381ade7d'
 }
 
 dependencies {

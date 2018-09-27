@@ -61,7 +61,6 @@ public class NetworkModule {
     static OkHttpClient provideDebugOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
                                                  @NonNull @Named(HTTP_BODY_LOGGING) HttpLoggingInterceptor loggingInterceptor,
                                                  @NonNull LastFMClientInterceptor clientInterceptor) {
-        //we can add here httpsTrustManager as well
         final OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(okHttpConfig.getConnectTimeout(), TimeUnit.SECONDS)
                 .readTimeout(okHttpConfig.getReadTimeout(), TimeUnit.SECONDS)
@@ -77,7 +76,6 @@ public class NetworkModule {
     @Named(RELEASE_OK_HTTP_CLIENT)
     static OkHttpClient provideSafeOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
                                                 @NonNull LastFMClientInterceptor clientInterceptor) {
-
         return new OkHttpClient.Builder()
                 .connectTimeout(okHttpConfig.getConnectTimeout(), TimeUnit.SECONDS)
                 .readTimeout(okHttpConfig.getReadTimeout(), TimeUnit.SECONDS)
@@ -96,7 +94,6 @@ public class NetworkModule {
             @Named(DEBUG_OK_HTTP_CLIENT) Provider<OkHttpClient> debugClient) {
         return BuildConfig.DEBUG ? debugClient.get() : releaseClient.get();
     }
-
 
     @Provides
     @ApplicationScope

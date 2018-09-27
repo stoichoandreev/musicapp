@@ -34,6 +34,10 @@ android {
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 configurations.all {
@@ -54,22 +58,17 @@ dependencies {
     api rootProject.libraries.supportCardView
     api rootProject.libraries.supportDesign
     api rootProject.libraries.supportAppcompatV7
-
     api rootProject.ext.libraries.rxJava2
-
     api rootProject.libraries.dagger
     annotationProcessor rootProject.libraries.daggerCompiler
     annotationProcessor rootProject.libraries.javaxAnnotationProcessor
-
     commonTestDependencies(it)
     commonAndroidTestDependencies(it)
     androidTestAnnotationProcessor rootProject.libraries.daggerCompiler
     testAnnotationProcessor rootProject.libraries.daggerCompiler
-
     application project(':app')
     feature project(':home')
     feature project(':details')
-
     api project(':api')
 }
 
