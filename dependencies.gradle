@@ -5,6 +5,7 @@ ext {
     minSdkVersion = 21
     targetSdkVersion = 28
 
+    kotlinVersion = "1.2.71"
     supportLibraryVersion = '27.1.1'
     constrtaintLayoutVersion = '1.1.3'
     javaRX2Version = '2.1.0'
@@ -49,6 +50,7 @@ ext {
             retrofitGSONConverter       : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             okhttpLoggingInterceptor    : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             commonsLang                 : "org.apache.commons:commons-lang3:$commonsLangVersion",
+            kotlinStandards             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     ]
 }
 ext {

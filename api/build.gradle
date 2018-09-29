@@ -9,7 +9,6 @@ test {
     testLogging {
         showStandardStreams = true
     }
-    systemProperty 'LAST_FM_API_KEY', 'b9304bb9f3e9c5397188fbb0381ade7d'
 }
 
 dependencies {
@@ -20,7 +19,7 @@ dependencies {
     compile rootProject.libraries.retrofitRxAdapter
     compile rootProject.libraries.retrofitGSONConverter
     compile rootProject.libraries.okhttpLoggingInterceptor
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
+    compile rootProject.libraries.kotlinStandards
 
 }
 

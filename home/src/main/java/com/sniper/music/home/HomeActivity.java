@@ -5,26 +5,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.SearchRecentSuggestions;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.CursorAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.sniper.music.base.di.ApplicationComponent;
 import com.sniper.music.base.di.ComponentsManager;
 import com.sniper.music.base.ui.BaseActivity;
 import com.sniper.music.home.di.DaggerHomeComponent;
 import com.sniper.music.home.di.HomeComponent;
-import com.sniper.music.home.di.HomeModule;
 import com.sniper.music.home.mvp.HomePresenter;
-import com.sniper.music.home.search.KeywordSuggestionProvider;
 
 import javax.inject.Inject;
 
@@ -37,15 +34,29 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
     @NonNull
     private ProgressBar progressBar;
     @NonNull
+    private TextView emptyContentTextView;
+    @NonNull
     private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        initViews();
         getScreenComponent().inject(this);
+        initViews();
         setupToolBar();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.attachView(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.detachView();
     }
 
     @Override
@@ -58,7 +69,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    storeToRecentSearches(query);
+                    presenter.saveRecentSearch(HomeActivity.this, query);
                     if (searchView != null) {
                         searchView.clearFocus();
                     }
@@ -104,27 +115,12 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
         //Usually these are queries from the voice search.
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             final String query = intent.getStringExtra(SearchManager.QUERY);
-            storeToRecentSearches(query);
+            presenter.saveRecentSearch(this, query);
             if (searchView != null) {
                 searchView.setQuery(query, true);
             }
             presenter.fetchSearchResults(query);
         }
-    }
-
-    @Override
-    public void showError(Throwable error) {
-
-    }
-
-    @Override
-    public void showLoading() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -135,7 +131,6 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
             ApplicationComponent appComponent = componentsManager.getAppComponent();
             component = DaggerHomeComponent.builder()
                     .applicationComponent(appComponent)
-                    .homeModule(new HomeModule(this))
                     .build();
             componentsManager.putBaseComponent(getComponentKey(), component);
         }
@@ -152,8 +147,24 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
         return presenter;
     }
 
+    @Override
+    public void showError(String errorMessage) {
+        displayErrors(errorMessage);
+    }
+
+    @Override
+    public void showLoading(boolean show) {
+        progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showArtistSearchResults() {
+
+    }
+
     private void initViews() {
         progressBar = findViewById(R.id.progress_indicator);
+        emptyContentTextView = findViewById(R.id.home_empty_view);
         recyclerView = findViewById(R.id.search_results_recycler_view);
     }
 
@@ -161,19 +172,5 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(R.string.home_screen_title);
         }
-    }
-
-    private void storeToRecentSearches(@Nullable String query) {
-        if (!TextUtils.isEmpty(query) && query.length() > 2) {
-            final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(HomeActivity.this,
-                    KeywordSuggestionProvider.AUTHORITY,
-                    KeywordSuggestionProvider.MODE);
-            suggestions.saveRecentQuery(query, null);
-        }
-    }
-
-    @Override
-    public void showArtistSearchResults() {
-
     }
 }

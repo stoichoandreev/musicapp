@@ -2,6 +2,7 @@
 <resources>
     <dimen name="activity_margin">16dp</dimen>
 
+    <dimen name="text_size_header">17sp</dimen>
     <dimen name="text_size_primary">15sp</dimen>
     <dimen name="text_size_small">13sp</dimen>
 

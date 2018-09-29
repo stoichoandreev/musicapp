@@ -1,7 +1,6 @@
 package com.sniper.music.base;
 
 import android.app.Application;
-import android.os.StrictMode;
 
 import com.sniper.music.base.di.ApplicationComponent;
 import com.sniper.music.base.di.BaseComponent;
@@ -15,14 +14,7 @@ public class MusicApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        initStrictMode();
         initComponents();
-    }
-
-    protected void initStrictMode() {
-        if (BuildConfig.DEBUG) {
-            StrictMode.enableDefaults();
-        }
     }
 
     private void initComponents() {

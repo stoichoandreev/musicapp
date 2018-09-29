@@ -8,33 +8,32 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BasePresenter<V extends BasePresenterView> {
 
-    @NonNull
+    @Nullable
     protected V mView;
     @NonNull
     private CompositeDisposable compositeDisposable;
 
-    protected BasePresenter() {
+    private BasePresenter() {
         compositeDisposable = new CompositeDisposable();
     }
 
-    public BasePresenter(@NonNull V view) {
+    public BasePresenter(@Nullable V view) {
         this();
+        this.mView = view;
+    }
+
+    public void setView(@Nullable V view) {
         this.mView = view;
     }
 
     public void addDisposable(@Nullable Disposable newDisposable) {
         if (newDisposable != null) {
-            getCompositeDisposable().add(newDisposable);
+            compositeDisposable.add(newDisposable);
         }
     }
 
     public void clearAllDisposables() {
-        if (getCompositeDisposable() != null) {
-            getCompositeDisposable().dispose();
-        }
+        compositeDisposable.dispose();
     }
 
-    protected CompositeDisposable getCompositeDisposable() {
-        return compositeDisposable;
-    }
 }

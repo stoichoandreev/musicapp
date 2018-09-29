@@ -1,7 +1,11 @@
 package com.sniper.music.base.ui;
 
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
 
 import com.sniper.music.base.di.BaseComponent;
 import com.sniper.music.base.di.ComponentsManager;
@@ -20,6 +24,15 @@ public abstract class BaseActivity<P extends Presenter, C extends BaseComponent>
         if (isFinishing()) {
             ComponentsManager.get().removeBaseComponent(getComponentKey());
             getPresenter().destroy();
+        }
+    }
+
+    protected void displayErrors(@NonNull String errorMessage) {
+        final View view = findViewById(android.R.id.content);
+        if (view != null) {
+            Snackbar.make(view, errorMessage, Snackbar.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         }
     }
 }

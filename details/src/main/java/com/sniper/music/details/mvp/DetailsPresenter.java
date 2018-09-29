@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import com.sniper.music.base.mvp.BasePresenterView;
 import com.sniper.music.base.mvp.Presenter;
 
-public interface DetailsPresenter extends Presenter {
+public interface DetailsPresenter<T extends BasePresenterView> extends Presenter<T> {
 
     void fetchDetails(@Nullable String newText);
 

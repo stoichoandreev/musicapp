@@ -7,7 +7,6 @@ import com.sniper.music.base.di.ComponentsManager;
 import com.sniper.music.base.ui.BaseActivity;
 import com.sniper.music.details.di.DaggerDetailsComponent;
 import com.sniper.music.details.di.DetailsComponent;
-import com.sniper.music.details.di.DetailsModule;
 import com.sniper.music.details.mvp.DetailsPresenter;
 
 import javax.inject.Inject;
@@ -29,10 +28,9 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
         final ComponentsManager componentsManager = ComponentsManager.get();
         DetailsComponent component = componentsManager.getBaseComponent(getComponentKey());
         if (component == null) {
-            ApplicationComponent appComponent = componentsManager.getAppComponent();
+            final ApplicationComponent appComponent = componentsManager.getAppComponent();
             component = DaggerDetailsComponent.builder()
                     .applicationComponent(appComponent)
-                    .detailsModule(new DetailsModule(this))
                     .build();
             componentsManager.putBaseComponent(getComponentKey(), component);
         }
@@ -50,18 +48,13 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
     }
 
     @Override
-    public void showLoading() {
-
+    public void showError(String errorMessage) {
+        displayErrors(errorMessage);
     }
 
     @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError(Throwable error) {
-
+    public void showLoading(boolean show) {
+//        progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     @Override
