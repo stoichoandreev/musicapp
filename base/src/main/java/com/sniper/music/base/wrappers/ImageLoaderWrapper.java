@@ -10,7 +10,7 @@ public class ImageLoaderWrapper {
 
     public static void loadImageFromUrl(@NonNull ImageView imageView, @Nullable String url) {
         if (url != null) {
-            Picasso.get().load(url).into(imageView);
+            Picasso.with(imageView.getContext()).load(url).into(imageView);
         }
     }
 }
