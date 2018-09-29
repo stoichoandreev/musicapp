@@ -19,6 +19,7 @@
             android:id="@+id/home_item_image_view"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:src="@drawable/ic_place_holder"
             android:contentDescription="@string/artist_image_content_description"
             app:layout_constraintLeft_toRightOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -31,6 +32,7 @@
             android:lines="1"
             android:padding="5dp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
@@ -44,9 +46,26 @@
             android:lines="2"
             android:padding="5dp"
             android:textStyle="italic"
+            android:textColor="@color/dark_grey"
+            android:linksClickable="true"
+            android:autoLink="web"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@id/home_item_title_view"
+            tools:text="Sub Title"/>
+
+        <TextView
+            android:id="@+id/home_item_additional_information_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/home_item_sub_title_view"
             tools:text="Sub Title"/>
 
         <android.support.constraint.Guideline

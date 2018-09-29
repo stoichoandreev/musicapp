@@ -15,6 +15,8 @@ public class HomeAdapterViewModel {
     private String url;
     @Nullable
     private String imageUrl;
+    @Nullable
+    private String additionalInformation;
 
     @NonNull
     @HomeAdapterType.Values
@@ -50,6 +52,11 @@ public class HomeAdapterViewModel {
         return itemType;
     }
 
+    @Nullable
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
+
     public static class Builder {
 
         private String mbID;
@@ -57,6 +64,7 @@ public class HomeAdapterViewModel {
         private String url;
         private String imageUrl;
         private int itemType;
+        private String additionalInformation;
 
         public Builder(@NonNull String mbID) {
             this.mbID = mbID;
@@ -82,6 +90,11 @@ public class HomeAdapterViewModel {
             return this;
         }
 
+        public Builder additionalInformation(String additionalInformation) {
+            this.additionalInformation = additionalInformation;
+            return this;
+        }
+
         public HomeAdapterViewModel build() {
             final HomeAdapterViewModel viewModelData = new HomeAdapterViewModel();
             viewModelData.mbID = this.mbID;
@@ -89,6 +102,7 @@ public class HomeAdapterViewModel {
             viewModelData.url = this.url;
             viewModelData.imageUrl = this.imageUrl;
             viewModelData.itemType = this.itemType;
+            viewModelData.additionalInformation = this.additionalInformation;
 
             return viewModelData;
         }

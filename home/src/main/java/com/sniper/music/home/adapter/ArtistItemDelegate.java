@@ -2,6 +2,7 @@ package com.sniper.music.home.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,10 @@ public class ArtistItemDelegate extends BaseAdapterDelegate<HomeAdapterViewModel
         ImageLoaderWrapper.loadImageFromUrl(holder.image, model.getImageUrl());
 
         holder.title.setText(model.getName());
-        holder.subTitle.setText(model.getUrl());
+        holder.additionalInformation.setText(model.getAdditionalInformation());
+
+        holder.subTitle.setText(Html.fromHtml(model.getUrl()));
+        holder.subTitle.setMovementMethod(LinkMovementMethod.getInstance());
 
         super.bindViewHolder(holder, model, position);
     }
@@ -42,14 +46,15 @@ public class ArtistItemDelegate extends BaseAdapterDelegate<HomeAdapterViewModel
         TextView title;
         @NonNull
         TextView subTitle;
+        @NonNull
+        TextView additionalInformation;
 
         ArtistItemViewHolder(View view) {
             super(view);
             image = view.findViewById(R.id.home_item_image_view);
             title = view.findViewById(R.id.home_item_title_view);
             subTitle = view.findViewById(R.id.home_item_sub_title_view);
-
-            subTitle.setMovementMethod(LinkMovementMethod.getInstance());
+            additionalInformation = view.findViewById(R.id.home_item_additional_information_view);
         }
     }
 }

@@ -83,7 +83,7 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
                 .withLatestFrom(searchParamsSubject, Pair::of)
                 .debounce(DEBOUNCE_TIMEOUT, TimeUnit.MILLISECONDS, debounceWorker)
                 .filter(pair -> {
-                    final boolean shouldFilter = pair.getRight() != null && pair.getRight().length() > KEY_WORD_MIN_SIZE;
+                    final boolean shouldFilter = pair.getRight() != null && pair.getRight().length() >= KEY_WORD_MIN_SIZE;
                     showHideLoadingSubject.onNext(shouldFilter);
                     return shouldFilter;
                 })
@@ -95,6 +95,7 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     @Override
     public void attachView(HomePresenter.View homeView) {
         view = homeView;
+        fetchSearchResults(searchParamsSubject.getValue());
     }
 
     @Override
@@ -109,8 +110,10 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
 
     @Override
     public void fetchSearchResults(@Nullable String newQuery) {
-        searchParamsSubject.onNext(newQuery);
-        onSearchSubject.onNext(true);
+        if (newQuery != null) {
+            searchParamsSubject.onNext(newQuery);
+            onSearchSubject.onNext(true);
+        }
     }
 
     @Override
