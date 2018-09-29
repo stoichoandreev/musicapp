@@ -15,7 +15,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
 
 import com.sniper.music.base.di.ApplicationComponent;
@@ -171,5 +170,10 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
                     KeywordSuggestionProvider.MODE);
             suggestions.saveRecentQuery(query, null);
         }
+    }
+
+    @Override
+    public void showArtistSearchResults() {
+
     }
 }

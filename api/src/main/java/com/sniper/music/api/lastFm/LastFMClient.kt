@@ -21,10 +21,10 @@ class LastFMClient(converterFactory: Converter.Factory,
             .build()
 
     companion object {
-        public const val NAME = "LastFMClient"
-        public const val GSON_CONVERTER_FACTORY = "LastFMGSONConverterFactory"
-        public const val RX_CALL_ADAPTER_FACTORY = "LastFMRXLastFMCallAdapterFactory"
-        public const val API_CONFIGURATION = "LastFMApiConfiguration"
+        const val NAME = "LastFMClient"
+        const val GSON_CONVERTER_FACTORY = "LastFMGSONConverterFactory"
+        const val RX_CALL_ADAPTER_FACTORY = "LastFMRXLastFMCallAdapterFactory"
+        const val API_CONFIGURATION = "LastFMApiConfiguration"
     }
 
     override fun <T> api(service: Class<T>): T {

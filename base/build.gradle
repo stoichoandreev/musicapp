@@ -59,9 +59,12 @@ dependencies {
     api rootProject.libraries.supportDesign
     api rootProject.libraries.supportAppcompatV7
     api rootProject.ext.libraries.rxJava2
+    api rootProject.ext.libraries.rxAndroid
+    api rootProject.libraries.commonsLang
     api rootProject.libraries.dagger
     annotationProcessor rootProject.libraries.daggerCompiler
     annotationProcessor rootProject.libraries.javaxAnnotationProcessor
+
     commonTestDependencies(it)
     commonAndroidTestDependencies(it)
     androidTestAnnotationProcessor rootProject.libraries.daggerCompiler

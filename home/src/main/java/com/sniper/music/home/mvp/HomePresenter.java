@@ -10,6 +10,6 @@ public interface HomePresenter extends Presenter {
     void fetchSearchResults(@Nullable String newText);
 
     interface View extends BasePresenterView {
-
+        void showArtistSearchResults();
     }
 }
