@@ -5,11 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.sniper.music.api.lastFm.dataModels.ArtistResponse;
+import com.sniper.music.home.models.HomeAdapterViewModel;
 import com.sniper.music.home.search.HomeRecentSearchesService;
 import com.sniper.music.home.services.HomeSearchService;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -28,7 +30,7 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     private PublishSubject<Boolean> onBottomPageReachedSubject =  PublishSubject.create();
     private PublishSubject<Throwable> onErrorSubject =  PublishSubject.create();
     private PublishSubject<Boolean> showHideLoadingSubject =  PublishSubject.create();
-    private BehaviorSubject<ArtistResponse> artistResponseSubject =  BehaviorSubject.create();
+    private BehaviorSubject<List<HomeAdapterViewModel>> viewModelListSubject =  BehaviorSubject.create();
     private BehaviorSubject<String> searchParamsSubject =  BehaviorSubject.create();
 
     @Nullable
@@ -59,10 +61,10 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
                 Observable.merge(onSearchSubject, onRefreshSubject, onBottomPageReachedSubject)
                         .doOnNext (newSearch -> showHideLoadingSubject.onNext(newSearch));
 
-        disposables.add(artistResponseSubject.subscribe(artistResponse -> {
+        disposables.add(viewModelListSubject.subscribe(items -> {
             if (view != null) {
                 showHideLoadingSubject.onNext(false);
-                view.showArtistSearchResults();
+                view.showSearchResults(items);
             }}));
 
         disposables.add(onErrorSubject.subscribe(error -> {
@@ -85,7 +87,7 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
                 })
                 .switchMap(pair -> searchService.doArtistSearch(pair.getRight())
                         .onExceptionResumeNext(Observable.empty()))
-                .subscribe(response -> artistResponseSubject.onNext(response)));
+                .subscribe(response -> viewModelListSubject.onNext(response)));
 //                .flatMap(isNewSearch -> {
 //            if (isNewSearch) {
 ////                pagingManager.reset()

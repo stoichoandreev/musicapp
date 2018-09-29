@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 
 import com.sniper.music.base.mvp.BasePresenterView;
 import com.sniper.music.base.mvp.Presenter;
+import com.sniper.music.home.models.HomeAdapterViewModel;
+
+import java.util.List;
 
 public interface HomePresenter<T extends BasePresenterView> extends Presenter<T> {
 
@@ -16,6 +19,8 @@ public interface HomePresenter<T extends BasePresenterView> extends Presenter<T>
     void saveRecentSearch(@NonNull Context context, @Nullable String query);
 
     interface View extends BasePresenterView {
-        void showArtistSearchResults();
+
+        void showSearchResults(@NonNull List<HomeAdapterViewModel> newItems);
+
     }
 }

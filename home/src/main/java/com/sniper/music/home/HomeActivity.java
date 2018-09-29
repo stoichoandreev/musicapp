@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.CursorAdapter;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -19,9 +20,13 @@ import android.widget.TextView;
 import com.sniper.music.base.di.ApplicationComponent;
 import com.sniper.music.base.di.ComponentsManager;
 import com.sniper.music.base.ui.BaseActivity;
+import com.sniper.music.home.adapter.HomeAdapter;
 import com.sniper.music.home.di.DaggerHomeComponent;
 import com.sniper.music.home.di.HomeComponent;
+import com.sniper.music.home.models.HomeAdapterViewModel;
 import com.sniper.music.home.mvp.HomePresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -38,13 +43,18 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
     @NonNull
     private RecyclerView recyclerView;
 
+    @NonNull
+    private final HomeAdapter homeAdapter = new HomeAdapter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getScreenComponent().inject(this);
         initViews();
-        setupToolBar();
+        initToolbar();
+        initScreenAdapter();
+
     }
 
     @Override
@@ -158,8 +168,8 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
     }
 
     @Override
-    public void showArtistSearchResults() {
-
+    public void showSearchResults(@NonNull List<HomeAdapterViewModel> newItems) {
+        homeAdapter.setNewItems(newItems);
     }
 
     private void initViews() {
@@ -168,9 +178,15 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
         recyclerView = findViewById(R.id.search_results_recycler_view);
     }
 
-    private void setupToolBar() {
+    private void initToolbar() {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(R.string.home_screen_title);
         }
+    }
+
+    private void initScreenAdapter() {
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(homeAdapter);
     }
 }

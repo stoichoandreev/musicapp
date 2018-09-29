@@ -6,6 +6,7 @@ import com.sniper.music.api.RetrofitClient;
 import com.sniper.music.api.lastFm.LastFMClient;
 import com.sniper.music.base.di.modules.NetworkModule;
 import com.sniper.music.home.api.HomeSearchApi;
+import com.sniper.music.home.converter.HomeViewModelConverter;
 import com.sniper.music.home.mvp.DefaultHomePresenter;
 import com.sniper.music.home.mvp.HomePresenter;
 import com.sniper.music.home.search.HomeRecentSearchesService;
@@ -32,9 +33,10 @@ public class HomeModule {
     @Provides
     @HomeScope
     static HomeSearchService providesHomeSearchService(@NonNull HomeSearchApi homeSearchApi,
+                                                       @NonNull HomeViewModelConverter converter,
                                                        @NonNull @Named(NetworkModule.MAIN_THREAD) Scheduler notifications,
                                                        @NonNull @Named(NetworkModule.BACKGROUND_THREAD) Scheduler worker) {
-        return new HomeSearchService(homeSearchApi, notifications, worker);
+        return new HomeSearchService(homeSearchApi, converter, notifications, worker);
     }
 
     @Provides

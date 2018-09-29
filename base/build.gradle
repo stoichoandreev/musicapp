@@ -58,6 +58,7 @@ dependencies {
     api rootProject.libraries.supportCardView
     api rootProject.libraries.supportDesign
     api rootProject.libraries.supportAppcompatV7
+    api rootProject.libraries.picasso
     api rootProject.ext.libraries.rxJava2
     api rootProject.ext.libraries.rxAndroid
     api rootProject.libraries.commonsLang
