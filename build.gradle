@@ -1,6 +1,7 @@
 buildscript {
     ext.kotlin_plugin_version = "1.2.71"
     ext.build_tools_plugin_version = "3.2.0"
+    ext.dexcount_plugin_version = '0.8.3'
     repositories {
         google()
         jcenter()
@@ -8,6 +9,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$build_tools_plugin_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version"
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexcount_plugin_version"
     }
 }
 
