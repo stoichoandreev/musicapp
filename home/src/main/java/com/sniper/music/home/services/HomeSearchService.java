@@ -2,6 +2,8 @@ package com.sniper.music.home.services;
 
 import android.support.annotation.NonNull;
 
+import com.sniper.music.api.lastFm.dataModels.AlbumResponse;
+import com.sniper.music.api.lastFm.dataModels.TrackResponse;
 import com.sniper.music.home.api.HomeSearchApi;
 import com.sniper.music.home.converter.HomeViewModelConverter;
 import com.sniper.music.home.models.HomeAdapterViewModel;
@@ -39,13 +41,13 @@ public class HomeSearchService {
                 .observeOn(notifications);
     }
 
-    public Observable<Void> doAlbumSearch(@NonNull String album) {
+    public Observable<AlbumResponse> doAlbumSearch(@NonNull String album) {
         return api.albumSearch(album)
                 .subscribeOn(worker)
                 .observeOn(notifications);
     }
 
-    public Observable<Void> doTrackSearch(@NonNull String track) {
+    public Observable<TrackResponse> doTrackSearch(@NonNull String track) {
         return api.trackSearch(track)
                 .subscribeOn(worker)
                 .observeOn(notifications);
