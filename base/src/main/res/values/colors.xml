@@ -10,6 +10,7 @@
     <color name="light_grey">#ECECEC</color>
     <color name="dark_grey">#7C7C7C</color>
     <color name="purple">#E25DB1</color>
+    <color name="black">@android:color/black</color>
 
     <color name="text_color_primary">#CCCCCC</color>
     <color name="white">@android:color/white</color>

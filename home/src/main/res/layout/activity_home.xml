@@ -15,10 +15,25 @@
         android:indeterminate="true"
         android:visibility="gone"/>
 
+    <TextView
+        android:id="@+id/home_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_header"
+        android:textColor="@color/white"
+        android:text="@string/enter_artist_name"
+        android:layout_margin="@dimen/activity_margin"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/search_results_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_margin"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_margin"
+        android:background="@color/window_background"
+        tools:itemCount="5"
+        tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_home_list"/>
 
 </android.support.design.widget.CoordinatorLayout>

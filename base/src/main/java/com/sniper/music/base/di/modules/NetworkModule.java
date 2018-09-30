@@ -6,12 +6,12 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sniper.music.api.ApiConfiguration;
+import com.sniper.music.api.RetrofitClient;
 import com.sniper.music.api.lastFm.LastFMApiConfiguration;
-import com.sniper.music.api.okhttp.DefaultOkHttpConfig;
 import com.sniper.music.api.lastFm.LastFMClient;
 import com.sniper.music.api.lastFm.LastFMClientInterceptor;
+import com.sniper.music.api.okhttp.DefaultOkHttpConfig;
 import com.sniper.music.api.okhttp.OKHttpConfig;
-import com.sniper.music.api.RetrofitClient;
 import com.sniper.music.base.BuildConfig;
 import com.sniper.music.base.di.ApplicationScope;
 
@@ -23,10 +23,14 @@ import javax.inject.Provider;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -35,6 +39,8 @@ public class NetworkModule {
     public static final String HTTP_BODY_LOGGING = "HttpBodyLogging";
     public static final String DEBUG_OK_HTTP_CLIENT = "DebugOkHttpClient";
     public static final String RELEASE_OK_HTTP_CLIENT = "ReleaseOkHttp3Client";
+    public static final String BACKGROUND_THREAD = "BackgroundThread";
+    public static final String MAIN_THREAD = "MainThread";
 
     @Provides
     @ApplicationScope
@@ -118,8 +124,15 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
+    @Named(LastFMClient.RX_CALL_ADAPTER_FACTORY)
+    static CallAdapter.Factory provideRxCallAdapterFactory() {
+        return RxJava2CallAdapterFactory.create();
+    }
+
+    @Provides
+    @ApplicationScope
     @Named(LastFMClient.API_CONFIGURATION)
-    static ApiConfiguration provideLastFMApiConfiguration() {
+    static ApiConfiguration provideApiConfiguration() {
         return new LastFMApiConfiguration(BuildConfig.DEBUG);
     }
 
@@ -131,5 +144,19 @@ public class NetworkModule {
                                               @NonNull OkHttpClient okHttpClient,
                                               @NonNull @Named(LastFMClient.API_CONFIGURATION) ApiConfiguration apiConfig) {
         return new LastFMClient(converterFactory, callAdapterFactory, okHttpClient, apiConfig);
+    }
+
+    @Provides
+    @ApplicationScope
+    @Named(BACKGROUND_THREAD)
+    static Scheduler provideBackgroundScheduler() {
+        return Schedulers.io();
+    }
+
+    @Provides
+    @ApplicationScope
+    @Named(MAIN_THREAD)
+    static Scheduler provideUiScheduler() {
+        return AndroidSchedulers.mainThread();
     }
 }
