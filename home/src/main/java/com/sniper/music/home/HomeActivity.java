@@ -58,13 +58,12 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
         initViews();
         initToolbar();
         initScreenAdapter();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.attachView(this);
+        presenter.attachView(this, wasSavedInstanceState);
     }
 
     @Override
@@ -180,6 +179,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
     public void onItemClick(HomeAdapterViewModel selectedItem) {
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appLinksService.generateScreenLink(ScreenLink.DETAILS)));
         intent.putExtra(IntentExtras.EXTRA_MB_ID, selectedItem.getMbID());
+        intent.putExtra(IntentExtras.EXTRA_NAME, selectedItem.getName());
         startActivity(intent);
     }
 

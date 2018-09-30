@@ -1,2 +1,4 @@
 <resources>
+    <string name="artist_image_content_description">Artist image</string>
+    <string name="details_screen_title">%1$s Details</string>
 </resources>

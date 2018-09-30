@@ -1,10 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".DetailsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ProgressBar
+            android:id="@+id/progress_indicator"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/details_image_view"/>
+
+        <ImageView
+            android:id="@+id/details_image_view"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_place_holder"
+            android:contentDescription="@string/artist_image_content_description"
+            app:layout_constraintTop_toBottomOf="@id/progress_indicator"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/details_title_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_indicator"
+            app:layout_constraintRight_toLeftOf="@+id/details_image_view"
+            tools:text="Title"/>
+
+        <TextView
+            android:id="@+id/details_url_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="5dp"
+            android:textStyle="italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_title_view"
+            app:layout_constraintRight_toLeftOf="@id/details_image_view"
+            tools:text="Link"/>
+
+        <TextView
+            android:id="@+id/details_listeners_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_url_view"
+            app:layout_constraintRight_toLeftOf="@id/details_image_view"
+            tools:text="Listeners"/>
+
+        <TextView
+            android:id="@+id/details_play_count_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_listeners_view"
+            app:layout_constraintRight_toLeftOf="@id/details_image_view"
+            tools:text="Play count"/>
+
+        <TextView
+            android:id="@+id/details_tags_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_play_count_view"
+            app:layout_constraintRight_toLeftOf="@id/details_image_view"
+            tools:text="Tags"/>
+
+        <TextView
+            android:id="@+id/details_description_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:linksClickable="true"
+            android:autoLink="web"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_image_view"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Some description"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

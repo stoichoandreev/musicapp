@@ -43,10 +43,12 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     @NonNull
     private Scheduler debounceWorker;
 
-    public DefaultHomePresenter(@NonNull HomeSearchService searchService,
+    public DefaultHomePresenter(@Nullable HomePresenter.View view,
+                                @NonNull HomeSearchService searchService,
                                 @NonNull HomeRecentSearchesService recentSearchesService,
                                 @NonNull CompositeDisposable compositeDisposable,
                                 @NonNull Scheduler debounceWorker) {
+        this.view = view;
         this.searchService = searchService;
         this.recentSearchesService = recentSearchesService;
         this.disposables = compositeDisposable;
@@ -93,9 +95,13 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     }
 
     @Override
-    public void attachView(HomePresenter.View homeView) {
+    public void attachView(HomePresenter.View homeView, boolean wasSavedInstanceState) {
         view = homeView;
-        fetchSearchResults(searchParamsSubject.getValue());
+        if (wasSavedInstanceState && viewModelListSubject.getValue() != null) {
+            viewModelListSubject.onNext(viewModelListSubject.getValue());
+        } else {
+            fetchSearchResults(searchParamsSubject.getValue());
+        }
     }
 
     @Override
