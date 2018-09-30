@@ -35,7 +35,8 @@ public class DefaultDetailsPresenter implements DetailsPresenter<DetailsPresente
 
     private void setup() {
 
-        disposables.add(paramSubject.flatMap(param -> detailsInfoService.getArtistInformation(param))
+        disposables.add(paramSubject.doOnNext(newSearch -> showHideLoadingSubject.onNext(true))
+                .flatMap(param -> detailsInfoService.getArtistInformation(param))
                 .subscribe(viewModel -> detailsViewModelSubject.onNext(viewModel), error -> onErrorSubject.onNext(error)));
 
         disposables.add(detailsViewModelSubject.subscribe(viewModel -> {

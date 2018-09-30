@@ -25,9 +25,9 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     private static final int DEBOUNCE_TIMEOUT = 400;
 
     private PublishSubject<Boolean> onSearchSubject = PublishSubject.create();
-    private PublishSubject<Boolean> onBottomPageReachedSubject = PublishSubject.create();
     private PublishSubject<Throwable> onErrorSubject = PublishSubject.create();
     private PublishSubject<Boolean> showHideLoadingSubject = PublishSubject.create();
+
     private BehaviorSubject<List<HomeAdapterViewModel>> viewModelListSubject = BehaviorSubject.create();
     private BehaviorSubject<String> searchParamsSubject = BehaviorSubject.create();
 
@@ -80,8 +80,7 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
                 .withLatestFrom(searchParamsSubject, Pair::of)
                 .debounce(DEBOUNCE_TIMEOUT, TimeUnit.MILLISECONDS, debounceWorker)
                 .filter(pair -> pair.getRight() != null && pair.getRight().length() >= KEY_WORD_MIN_SIZE)
-                .switchMap(pair -> searchService.doArtistSearch(pair.getRight())
-                        .onExceptionResumeNext(Observable.empty()))
+                .switchMap(pair -> searchService.doArtistSearch(pair.getRight()).onExceptionResumeNext(Observable.empty()))
                 .subscribe(response -> viewModelListSubject.onNext(response), error -> onErrorSubject.onNext(error)));
     }
 
