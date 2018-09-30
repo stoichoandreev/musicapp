@@ -37,8 +37,23 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/home_item_image_view"
-            app:layout_constraintBottom_toTopOf="@+id/home_item_sub_title_view"
+            app:layout_constraintBottom_toTopOf="@+id/home_item_additional_information_view"
             tools:text="Title"/>
+
+        <TextView
+            android:id="@+id/home_item_additional_information_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_item_title_view"
+            app:layout_constraintRight_toLeftOf="@id/home_item_image_view"
+            app:layout_constraintBottom_toTopOf="@+id/home_item_sub_title_view"
+            tools:text="Information"/>
 
         <TextView
             android:id="@+id/home_item_sub_title_view"
@@ -52,25 +67,10 @@
             android:linksClickable="true"
             android:autoLink="web"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_item_title_view"
-            app:layout_constraintRight_toLeftOf="@id/home_item_image_view"
-            app:layout_constraintBottom_toTopOf="@id/home_item_additional_information_view"
-            tools:text="Sub Title"/>
-
-        <TextView
-            android:id="@+id/home_item_additional_information_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:padding="5dp"
-            android:textStyle="italic"
-            android:textColor="@color/dark_grey"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_item_sub_title_view"
+            app:layout_constraintTop_toBottomOf="@id/home_item_additional_information_view"
             app:layout_constraintRight_toLeftOf="@id/home_item_image_view"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Information"/>
+            tools:text="Sub Title"/>
 
     </android.support.constraint.ConstraintLayout>
 
