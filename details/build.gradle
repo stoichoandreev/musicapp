@@ -12,7 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
 
-        vectorDrawables.useSupportLibrary = true
+        manifestPlaceholders = [appLinkScheme:rootProject.appLinkScheme,
+                                appLinkHost:rootProject.appLinkHost,
+                                appLinkDetails:rootProject.appLinkDetailsScreen]
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

@@ -29,7 +29,7 @@ public class ApplicationModule {
     @Provides
     @ApplicationScope
     public AppLinksService provideAppLinkService() {
-        return new AppLinksService(BuildConfig.APP_LINK_URL);
+        return new AppLinksService(BuildConfig.APP_LINK_BASE_URL);
     }
 
 }

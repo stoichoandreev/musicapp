@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.sniper.music.details">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sniper.music.details">
 
     <application>
         <activity android:name=".DetailsActivity">
@@ -12,9 +13,9 @@
                 <category android:name="android.intent.category.DEFAULT"/>
 
                 <data
-                    android:host="com.sniper.music"
-                    android:pathPattern="/details"
-                    android:scheme="https"/>
+                    android:host="${appLinkHost}"
+                    android:pathPattern="${appLinkDetails}"
+                    android:scheme="${appLinkScheme}"/>
             </intent-filter>
         </activity>
     </application>
