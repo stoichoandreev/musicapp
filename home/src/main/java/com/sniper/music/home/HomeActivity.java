@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,10 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.sniper.music.base.adapter.OnItemClickListener;
 import com.sniper.music.base.di.ApplicationComponent;
 import com.sniper.music.base.di.ComponentsManager;
+import com.sniper.music.base.intents.IntentExtras;
+import com.sniper.music.base.intents.ScreenLink;
+import com.sniper.music.base.services.AppLinksService;
 import com.sniper.music.base.ui.BaseActivity;
 import com.sniper.music.home.adapter.HomeAdapter;
 import com.sniper.music.home.di.DaggerHomeComponent;
@@ -30,21 +34,21 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> implements HomePresenter.View {
+public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> implements HomePresenter.View, OnItemClickListener<HomeAdapterViewModel> {
 
     @Inject
     HomePresenter presenter;
+    @Inject
+    AppLinksService appLinksService;
     @Nullable
     private SearchView searchView;
     @NonNull
     private ProgressBar progressBar;
     @NonNull
-    private TextView emptyContentTextView;
-    @NonNull
     private RecyclerView recyclerView;
 
     @NonNull
-    private final HomeAdapter homeAdapter = new HomeAdapter();
+    private final HomeAdapter homeAdapter = new HomeAdapter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,9 +176,15 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
         homeAdapter.setNewItems(newItems);
     }
 
+    @Override
+    public void onItemClick(HomeAdapterViewModel selectedItem) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appLinksService.generateScreenLink(ScreenLink.DETAILS)));
+        intent.putExtra(IntentExtras.EXTRA_MB_ID, selectedItem.getMbID());
+        startActivity(intent);
+    }
+
     private void initViews() {
         progressBar = findViewById(R.id.progress_indicator);
-        emptyContentTextView = findViewById(R.id.home_empty_view);
         recyclerView = findViewById(R.id.search_results_recycler_view);
     }
 

@@ -1,9 +1,11 @@
 package com.sniper.music.details;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.sniper.music.base.di.ApplicationComponent;
 import com.sniper.music.base.di.ComponentsManager;
+import com.sniper.music.base.intents.IntentExtras;
 import com.sniper.music.base.ui.BaseActivity;
 import com.sniper.music.details.di.DaggerDetailsComponent;
 import com.sniper.music.details.di.DetailsComponent;
@@ -16,11 +18,17 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
     @Inject
     DetailsPresenter presenter;
 
+    @Nullable
+    private String mbId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         getScreenComponent().inject(this);
+        if (getIntent().getExtras() != null) {
+            mbId = getIntent().getExtras().getString(IntentExtras.EXTRA_MB_ID);
+        }
     }
 
     @Override

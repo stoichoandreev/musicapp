@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     android:elevation="3dp"
     app:cardCornerRadius="4dp">
 
@@ -21,26 +21,28 @@
             android:layout_height="100dp"
             android:src="@drawable/ic_place_holder"
             android:contentDescription="@string/artist_image_content_description"
-            app:layout_constraintLeft_toRightOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/home_item_title_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
             android:padding="5dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/home_item_image_view"
+            app:layout_constraintBottom_toTopOf="@+id/home_item_sub_title_view"
             tools:text="Title"/>
 
         <TextView
             android:id="@+id/home_item_sub_title_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="2"
@@ -49,31 +51,26 @@
             android:textColor="@color/dark_grey"
             android:linksClickable="true"
             android:autoLink="web"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_item_title_view"
+            app:layout_constraintRight_toLeftOf="@id/home_item_image_view"
+            app:layout_constraintBottom_toTopOf="@id/home_item_additional_information_view"
             tools:text="Sub Title"/>
 
         <TextView
             android:id="@+id/home_item_additional_information_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
             android:padding="5dp"
             android:textStyle="italic"
             android:textColor="@color/dark_grey"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_item_sub_title_view"
-            tools:text="Sub Title"/>
-
-        <android.support.constraint.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guideline"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.7"/>
+            app:layout_constraintRight_toLeftOf="@id/home_item_image_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Information"/>
 
     </android.support.constraint.ConstraintLayout>
 

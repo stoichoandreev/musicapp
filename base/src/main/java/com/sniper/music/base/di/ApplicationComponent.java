@@ -7,6 +7,7 @@ import com.sniper.music.api.lastFm.LastFMClient;
 import com.sniper.music.base.MusicApplication;
 import com.sniper.music.base.di.modules.ApplicationModule;
 import com.sniper.music.base.di.modules.NetworkModule;
+import com.sniper.music.base.services.AppLinksService;
 
 import javax.inject.Named;
 
@@ -18,6 +19,8 @@ import io.reactivex.Scheduler;
 public interface ApplicationComponent extends BaseComponent {
 
     Context context();
+
+    AppLinksService appLinkService();
 
     @Named(LastFMClient.NAME)
     RetrofitClient lastFMClient();

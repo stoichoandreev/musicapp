@@ -13,7 +13,8 @@ public abstract class BaseAdapterDelegate<T, VH extends BaseViewHolder> {
     @CallSuper
     public void bindViewHolder(VH holder,
                                T model,
-                               int position) {
+                               int position,
+                               OnItemClickListener<T> listener) {
         //unused
     }
 }
