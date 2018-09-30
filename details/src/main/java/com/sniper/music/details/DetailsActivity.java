@@ -68,6 +68,7 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
     protected void onResume() {
         super.onResume();
         presenter.attachView(this, wasSavedInstanceState);
+        presenter.fetchDetails(name);
     }
 
     @Override

@@ -63,8 +63,7 @@ public class DefaultDetailsPresenter implements DetailsPresenter<DetailsPresente
         view = detailsView;
         if (wasSavedInstanceState && detailsViewModelSubject.getValue() != null) {
             detailsViewModelSubject.onNext(detailsViewModelSubject.getValue());
-        } else
-            fetchDetails(paramSubject.getValue());
+        }
     }
 
     @Override
@@ -79,7 +78,7 @@ public class DefaultDetailsPresenter implements DetailsPresenter<DetailsPresente
 
     @Override
     public void fetchDetails(@Nullable String query) {
-        if (query != null) {
+        if (query != null && detailsViewModelSubject.getValue() == null) {
             paramSubject.onNext(query);
         }
     }

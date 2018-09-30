@@ -14,8 +14,6 @@ public interface HomePresenter<T extends BasePresenterView> extends Presenter<T>
 
     void fetchSearchResults(@Nullable String newQuery);
 
-    void doRefresh();
-
     void saveRecentSearch(@NonNull Context context, @Nullable String query);
 
     interface View extends BasePresenterView {
