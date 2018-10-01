@@ -1,7 +1,10 @@
 package com.sniper.music.base.ui;
 
 
+import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,8 +19,15 @@ public abstract class BaseActivity<P extends Presenter, C extends BaseComponent>
     protected abstract C getScreenComponent();
     protected abstract String getComponentKey();
     protected abstract P getPresenter();
+    protected boolean wasSavedInstanceState;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        wasSavedInstanceState = savedInstanceState != null;
+    }
 
+    @CallSuper
     @Override
     protected void onDestroy() {
         super.onDestroy();

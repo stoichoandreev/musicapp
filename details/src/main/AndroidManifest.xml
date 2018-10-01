@@ -12,10 +12,14 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
 
+                <!--<data-->
+                    <!--android:host="${appLinkHost}"-->
+                    <!--android:pathPattern="${appLinkDetails}"-->
+                    <!--android:scheme="${appLinkScheme}"/>-->
                 <data
-                    android:host="${appLinkHost}"
-                    android:pathPattern="${appLinkDetails}"
-                    android:scheme="${appLinkScheme}"/>
+                    android:host="com.sniper.music"
+                    android:pathPattern="/details"
+                    android:scheme="music"/>
             </intent-filter>
         </activity>
     </application>

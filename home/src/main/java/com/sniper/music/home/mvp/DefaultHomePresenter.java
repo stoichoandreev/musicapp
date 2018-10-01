@@ -25,10 +25,9 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     private static final int DEBOUNCE_TIMEOUT = 400;
 
     private PublishSubject<Boolean> onSearchSubject = PublishSubject.create();
-    private PublishSubject<Boolean> onRefreshSubject = PublishSubject.create();
-    private PublishSubject<Boolean> onBottomPageReachedSubject = PublishSubject.create();
     private PublishSubject<Throwable> onErrorSubject = PublishSubject.create();
     private PublishSubject<Boolean> showHideLoadingSubject = PublishSubject.create();
+
     private BehaviorSubject<List<HomeAdapterViewModel>> viewModelListSubject = BehaviorSubject.create();
     private BehaviorSubject<String> searchParamsSubject = BehaviorSubject.create();
 
@@ -43,10 +42,12 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     @NonNull
     private Scheduler debounceWorker;
 
-    public DefaultHomePresenter(@NonNull HomeSearchService searchService,
+    public DefaultHomePresenter(@Nullable HomePresenter.View view,
+                                @NonNull HomeSearchService searchService,
                                 @NonNull HomeRecentSearchesService recentSearchesService,
                                 @NonNull CompositeDisposable compositeDisposable,
                                 @NonNull Scheduler debounceWorker) {
+        this.view = view;
         this.searchService = searchService;
         this.recentSearchesService = recentSearchesService;
         this.disposables = compositeDisposable;
@@ -55,10 +56,6 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     }
 
     private void setup() {
-
-        final Observable<Boolean> mergedObservable =
-                Observable.merge(onSearchSubject, onRefreshSubject, onBottomPageReachedSubject)
-                        .doOnNext(newSearch -> showHideLoadingSubject.onNext(newSearch));
 
         disposables.add(viewModelListSubject.subscribe(items -> {
             if (view != null) {
@@ -79,23 +76,22 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
             }
         }));
 
-        disposables.add(mergedObservable
+        disposables.add(onSearchSubject.doOnNext(newSearch -> showHideLoadingSubject.onNext(newSearch))
                 .withLatestFrom(searchParamsSubject, Pair::of)
                 .debounce(DEBOUNCE_TIMEOUT, TimeUnit.MILLISECONDS, debounceWorker)
-                .filter(pair -> {
-                    final boolean shouldFilter = pair.getRight() != null && pair.getRight().length() >= KEY_WORD_MIN_SIZE;
-                    showHideLoadingSubject.onNext(shouldFilter);
-                    return shouldFilter;
-                })
-                .switchMap(pair -> searchService.doArtistSearch(pair.getRight())
-                        .onExceptionResumeNext(Observable.empty()))
-                .subscribe(response -> viewModelListSubject.onNext(response)));
+                .filter(pair -> pair.getRight() != null && pair.getRight().length() >= KEY_WORD_MIN_SIZE)
+                .switchMap(pair -> searchService.doArtistSearch(pair.getRight()).onExceptionResumeNext(Observable.empty()))
+                .subscribe(response -> viewModelListSubject.onNext(response), error -> onErrorSubject.onNext(error)));
     }
 
     @Override
-    public void attachView(HomePresenter.View homeView) {
+    public void attachView(HomePresenter.View homeView, boolean wasSavedInstanceState) {
         view = homeView;
-        fetchSearchResults(searchParamsSubject.getValue());
+        if (wasSavedInstanceState && viewModelListSubject.getValue() != null) {
+            viewModelListSubject.onNext(viewModelListSubject.getValue());
+        } else {
+            fetchSearchResults(searchParamsSubject.getValue());
+        }
     }
 
     @Override
@@ -110,15 +106,10 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
 
     @Override
     public void fetchSearchResults(@Nullable String newQuery) {
-        if (newQuery != null) {
+        if (newQuery != null && newQuery.length() >= KEY_WORD_MIN_SIZE) {
             searchParamsSubject.onNext(newQuery);
             onSearchSubject.onNext(true);
         }
-    }
-
-    @Override
-    public void doRefresh() {
-        onRefreshSubject.onNext(true);
     }
 
     @Override

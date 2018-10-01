@@ -43,7 +43,8 @@ public class HomeModule {
     @HomeScope
     static HomePresenter providesPresenter(@NonNull HomeSearchService homeSearchService,
                                            @NonNull HomeRecentSearchesService recentSearchesService) {
-        return new DefaultHomePresenter(homeSearchService,
+        return new DefaultHomePresenter(null,
+                homeSearchService,
                 recentSearchesService,
                 new CompositeDisposable(),
                 AndroidSchedulers.mainThread());

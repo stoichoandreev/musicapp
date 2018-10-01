@@ -6,4 +6,6 @@ object EndPoints {
     const val AlbumSearch: String = "?method=album.search"
     const val TrackSearch: String = "?method=track.search"
 
+    const val ArtistInfo: String = "?method=artist.getinfo"
+
 }
