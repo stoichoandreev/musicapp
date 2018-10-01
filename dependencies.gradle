@@ -27,6 +27,9 @@ ext {
     espressoVersion = '3.0.2'
     mockServerVersion = '3.5.0'
     assertJVersion = '3.6.2'
+    kotlinMockitCoreVersion = '2.13.0'
+    kotlinJunitRunnerVersion = '0.3.1'
+
     libraries = [
             supportAppcompatV7          : "com.android.support:appcompat-v7:$supportLibraryVersion",
             supportDesign               : "com.android.support:design:$supportLibraryVersion",
@@ -63,6 +66,10 @@ ext {
             powerMockModuleJunit4   : "org.powermock:powermock-module-junit4:$powerMockVersion",
             assertJCore             : "org.assertj:assertj-core:$assertJVersion",
 
+            kotlinJunitAssertions  : "org.jetbrains.kotlin:kotlin-test-junit:$rootProject.ext.kotlinVersion",
+            kotlinJUnitRunner      : "de.jodamob.kotlin:kotlin-runner-junit4:$kotlinJunitRunnerVersion",
+            kotlinMockitoInline    : "org.mockito:mockito-inline:$kotlinMockitCoreVersion",
+
             supportEspressoContrib  : "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
             supportEspressoCore     : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
             supportEspressoIntents  : "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
@@ -77,6 +84,17 @@ ext.commonTestDependencies = { dependencies ->
     dependencies.testImplementation librariesTest.mockitoCore
     dependencies.testImplementation librariesTest.assertJCore
     dependencies.testImplementation librariesTest.powerMockModuleJunit4
+    dependencies.testImplementation (librariesTest.powerMockMockito) {
+        exclude module: 'mockito-all'
+    }
+}
+
+ext.commonKotlinTestDependencies = { dependencies ->
+    dependencies.testImplementation librariesTest.JUnit
+    dependencies.testImplementation librariesTest.mockitoCore
+    dependencies.testImplementation librariesTest.kotlinJunitAssertions
+    dependencies.testImplementation librariesTest.kotlinJUnitRunner
+    dependencies.testImplementation librariesTest.kotlinMockitoInline
     dependencies.testImplementation (librariesTest.powerMockMockito) {
         exclude module: 'mockito-all'
     }

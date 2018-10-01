@@ -11,10 +11,7 @@ public abstract class BaseAdapterDelegate<T, VH extends BaseViewHolder> {
     public abstract RecyclerView.ViewHolder createViewHolder(ViewGroup parent);
 
     @CallSuper
-    public void bindViewHolder(VH holder,
-                               T model,
-                               int position,
-                               OnItemClickListener<T> listener) {
+    public void bindViewHolder(VH holder, T model, int position, OnItemClickListener<T> listener) {
         //unused
     }
 }
