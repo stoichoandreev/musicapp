@@ -39,7 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:lines="2"
+            android:lines="1"
             android:padding="5dp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -49,29 +49,16 @@
             tools:text="Title"/>
 
         <TextView
-            android:id="@+id/details_url_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:padding="5dp"
-            android:textStyle="italic"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_title_view"
-            app:layout_constraintRight_toLeftOf="@id/details_image_view"
-            tools:text="Link"/>
-
-        <TextView
             android:id="@+id/details_listeners_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:lines="1"
+            android:lines="2"
             android:padding="5dp"
             android:textStyle="italic"
             android:textColor="@color/dark_grey"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_url_view"
+            app:layout_constraintTop_toBottomOf="@id/details_title_view"
             app:layout_constraintRight_toLeftOf="@id/details_image_view"
             tools:text="Listeners"/>
 
@@ -80,7 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:lines="1"
+            android:lines="2"
             android:padding="5dp"
             android:textStyle="italic"
             android:textColor="@color/dark_grey"
@@ -88,6 +75,36 @@
             app:layout_constraintTop_toBottomOf="@id/details_listeners_view"
             app:layout_constraintRight_toLeftOf="@id/details_image_view"
             tools:text="Play count"/>
+
+        <TextView
+            android:id="@+id/details_url_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:linksClickable="true"
+            android:autoLink="web"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_play_count_view"
+            app:layout_constraintRight_toLeftOf="@id/details_image_view"
+            app:layout_constraintBottom_toTopOf="@id/details_description_view"
+            tools:text="Link"/>
+
+        <TextView
+            android:id="@+id/details_description_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textStyle="italic"
+            android:linksClickable="true"
+            android:autoLink="web"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_image_view"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Some description"/>
 
         <TextView
             android:id="@+id/details_tags_view"
@@ -99,22 +116,10 @@
             android:textStyle="italic"
             android:textColor="@color/dark_grey"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_play_count_view"
-            app:layout_constraintRight_toLeftOf="@id/details_image_view"
-            tools:text="Tags"/>
-
-        <TextView
-            android:id="@+id/details_description_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textStyle="italic"
-            android:linksClickable="true"
-            android:autoLink="web"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/details_image_view"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="Some description"/>
+            app:layout_constraintTop_toBottomOf="@id/details_description_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Tags"/>
 
     </android.support.constraint.ConstraintLayout>
 

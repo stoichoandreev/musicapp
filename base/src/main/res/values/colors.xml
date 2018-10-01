@@ -12,7 +12,7 @@
     <color name="purple">#E25DB1</color>
     <color name="black">@android:color/black</color>
 
-    <color name="text_color_primary">#CCCCCC</color>
+    <color name="text_color_primary">@color/white</color>
     <color name="white">@android:color/white</color>
     <color name="window_background">@color/grey</color>
 </resources>

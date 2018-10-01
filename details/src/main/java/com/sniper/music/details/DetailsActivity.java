@@ -3,8 +3,10 @@ package com.sniper.music.details;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -78,6 +80,14 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
     protected DetailsComponent getScreenComponent() {
         final ComponentsManager componentsManager = ComponentsManager.get();
         DetailsComponent component = componentsManager.getBaseComponent(getComponentKey());
@@ -120,7 +130,8 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
         listenersView.setText(detailsInfo.getListeners());
         playCountView.setText(detailsInfo.getPlayCount());
         tagsView.setText(Arrays.toString(detailsInfo.getTags()));
-        descriptionView.setText(detailsInfo.getSummary());
+        descriptionView.setText(Html.fromHtml(detailsInfo.getSummary()));
+        descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void initViews() {
@@ -135,8 +146,10 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
     }
 
     private void initToolbar() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(String.format(getString(R.string.details_screen_title), name));
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(String.format(getString(R.string.details_screen_title), name));
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 }
