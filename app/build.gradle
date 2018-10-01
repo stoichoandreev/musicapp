@@ -44,6 +44,9 @@ dependencies {
     implementation project(':home')
     implementation project(':details')
 
+    androidTestAnnotationProcessor rootProject.libraries.daggerCompiler
+    androidTestAnnotationProcessor rootProject.libraries.javaxAnnotationProcessor
+
     commonAndroidTestDependencies(it)
     mockServerTestDependencies(it)
 

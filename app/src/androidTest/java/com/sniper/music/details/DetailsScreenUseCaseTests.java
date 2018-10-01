@@ -10,17 +10,15 @@ import android.support.test.runner.AndroidJUnit4;
 import com.sniper.music.annotations.SmokeTest;
 import com.sniper.music.annotations.StableTest;
 import com.sniper.music.base.intents.IntentExtras;
+import com.sniper.music.details.configurator.DetailsConfigurator;
+import com.sniper.music.details.robot.DetailsScreenRobot;
+import com.sniper.music.rules.FinishOpenActivitiesRule;
 
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import com.sniper.music.details.configurator.DetailsConfigurator;
-import com.sniper.music.details.robot.DetailsScreenRobot;
-import com.sniper.music.rules.FinishOpenActivitiesRule;
 
 @SmokeTest
 @StableTest
@@ -57,11 +55,6 @@ public class DetailsScreenUseCaseTests {
     @AfterClass
     public static void afterClass() {
         detailsConfigurator.tearDown();
-    }
-
-    @Before
-    public void setUp() {
-        //unused
     }
 
     @Test

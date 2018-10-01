@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 public class LastFMConfigurator {
+
     @Inject
     @Named(LastFMClient.NAME)
     RetrofitClient lastFMClient;
@@ -19,12 +20,6 @@ public class LastFMConfigurator {
         ((ApplicationTestComponent) ComponentsManager.get().getAppComponent()).inject(this);
         if (lastFMClient instanceof MockRetrofitClient) {
             ((MockRetrofitClient) lastFMClient).setup();
-        }
-    }
-
-    public void teardown() {
-        if (lastFMClient instanceof MockRetrofitClient) {
-            ((MockRetrofitClient) lastFMClient).clearResponseMap();
         }
     }
 
