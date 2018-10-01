@@ -71,9 +71,7 @@ dependencies {
     annotationProcessor rootProject.libraries.javaxAnnotationProcessor
 
     commonTestDependencies(it)
-    commonAndroidTestDependencies(it)
-    androidTestAnnotationProcessor rootProject.libraries.daggerCompiler
-    testAnnotationProcessor rootProject.libraries.daggerCompiler
+
     application project(':app')
     feature project(':home')
     feature project(':details')

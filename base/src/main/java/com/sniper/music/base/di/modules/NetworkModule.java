@@ -44,27 +44,27 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
-    static OKHttpConfig providesOkHttpConfig() {
+    public OKHttpConfig providesOkHttpConfig() {
         return new DefaultOkHttpConfig();
     }
 
     @Provides
     @ApplicationScope
     @Named(HTTP_BODY_LOGGING)
-    static HttpLoggingInterceptor provideHttpBodyLoggingInterceptor() {
+    public HttpLoggingInterceptor provideHttpBodyLoggingInterceptor() {
         return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
     @Provides
     @ApplicationScope
-    static LastFMClientInterceptor provideUserAgentInterceptor() {
+    public LastFMClientInterceptor provideUserAgentInterceptor() {
         return new LastFMClientInterceptor();
     }
 
     @Provides
     @ApplicationScope
     @Named(DEBUG_OK_HTTP_CLIENT)
-    static OkHttpClient provideDebugOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
+    public OkHttpClient provideDebugOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
                                                  @NonNull @Named(HTTP_BODY_LOGGING) HttpLoggingInterceptor loggingInterceptor,
                                                  @NonNull LastFMClientInterceptor clientInterceptor) {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -80,7 +80,7 @@ public class NetworkModule {
     @Provides
     @ApplicationScope
     @Named(RELEASE_OK_HTTP_CLIENT)
-    static OkHttpClient provideSafeOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
+    public OkHttpClient provideSafeOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
                                                 @NonNull LastFMClientInterceptor clientInterceptor) {
         return new OkHttpClient.Builder()
                 .connectTimeout(okHttpConfig.getConnectTimeout(), TimeUnit.SECONDS)
@@ -95,7 +95,7 @@ public class NetworkModule {
      */
     @Provides
     @ApplicationScope
-    static OkHttpClient provideOkHttpClient(
+    public OkHttpClient provideOkHttpClient(
             @Named(RELEASE_OK_HTTP_CLIENT) Provider<OkHttpClient> releaseClient,
             @Named(DEBUG_OK_HTTP_CLIENT) Provider<OkHttpClient> debugClient) {
         return BuildConfig.DEBUG ? debugClient.get() : releaseClient.get();
@@ -104,7 +104,7 @@ public class NetworkModule {
     @Provides
     @ApplicationScope
     @Named("DefaultGSONSetup")
-    static Gson provideGSON() {
+    public Gson provideGSON() {
         return new GsonBuilder()
                 .enableComplexMapKeySerialization()
                 .serializeNulls()
@@ -118,28 +118,28 @@ public class NetworkModule {
     @Provides
     @ApplicationScope
     @Named(LastFMClient.GSON_CONVERTER_FACTORY)
-    static Converter.Factory provideGsonConverterFactory(@NonNull @Named("DefaultGSONSetup") Gson gson) {
+    public Converter.Factory provideGsonConverterFactory(@NonNull @Named("DefaultGSONSetup") Gson gson) {
         return GsonConverterFactory.create(gson);
     }
 
     @Provides
     @ApplicationScope
     @Named(LastFMClient.RX_CALL_ADAPTER_FACTORY)
-    static CallAdapter.Factory provideRxCallAdapterFactory() {
+    public CallAdapter.Factory provideRxCallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
 
     @Provides
     @ApplicationScope
     @Named(LastFMClient.API_CONFIGURATION)
-    static ApiConfiguration provideApiConfiguration() {
+    public ApiConfiguration provideApiConfiguration() {
         return new LastFMApiConfiguration(BuildConfig.DEBUG);
     }
 
     @Provides
     @ApplicationScope
     @Named(LastFMClient.NAME)
-    static RetrofitClient provideLastFMClient(@NonNull @Named(LastFMClient.GSON_CONVERTER_FACTORY) Converter.Factory converterFactory,
+    public RetrofitClient provideLastFMClient(@NonNull @Named(LastFMClient.GSON_CONVERTER_FACTORY) Converter.Factory converterFactory,
                                               @NonNull @Named(LastFMClient.RX_CALL_ADAPTER_FACTORY) CallAdapter.Factory callAdapterFactory,
                                               @NonNull OkHttpClient okHttpClient,
                                               @NonNull @Named(LastFMClient.API_CONFIGURATION) ApiConfiguration apiConfig) {
@@ -149,14 +149,14 @@ public class NetworkModule {
     @Provides
     @ApplicationScope
     @Named(BACKGROUND_THREAD)
-    static Scheduler provideBackgroundScheduler() {
+    public Scheduler provideBackgroundScheduler() {
         return Schedulers.io();
     }
 
     @Provides
     @ApplicationScope
     @Named(MAIN_THREAD)
-    static Scheduler provideUiScheduler() {
+    public Scheduler provideUiScheduler() {
         return AndroidSchedulers.mainThread();
     }
 }

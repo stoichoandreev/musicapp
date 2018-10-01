@@ -56,7 +56,7 @@ public class ArtistItemDelegate extends BaseAdapterDelegate<HomeAdapterViewModel
         @NonNull
         TextView additionalInformation;
 
-        ArtistItemViewHolder(View view) {
+        ArtistItemViewHolder(@NonNull View view) {
             super(view);
             parent = view;
             image = view.findViewById(R.id.home_item_image_view);

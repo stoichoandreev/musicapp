@@ -1,0 +1,134 @@
+{
+  "artist": {
+    "name": "Cher",
+    "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+    "url": "https://www.last.fm/music/Cher",
+    "image": [
+      {
+        "#text": "https://lastfm-img2.akamaized.net/i/u/34s/879a88760860cc472d826ca4e7fc5ad6.png",
+        "size": "small"
+      },
+      {
+        "#text": "https://lastfm-img2.akamaized.net/i/u/64s/879a88760860cc472d826ca4e7fc5ad6.png",
+        "size": "medium"
+      },
+      {
+        "#text": "https://lastfm-img2.akamaized.net/i/u/174s/879a88760860cc472d826ca4e7fc5ad6.png",
+        "size": "large"
+      },
+      {
+        "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/879a88760860cc472d826ca4e7fc5ad6.png",
+        "size": "extralarge"
+      },
+      {
+        "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/879a88760860cc472d826ca4e7fc5ad6.png",
+        "size": "mega"
+      }
+    ],
+    "streamable": "0",
+    "ontour": "1",
+    "stats": {
+      "listeners": "1076938",
+      "playcount": "14952381"
+    },
+    "similar": {
+      "artist": [
+        {
+          "name": "Madonna",
+          "url": "https://www.last.fm/music/Madonna",
+          "image": [
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/34s/b59e11c1fc97e2169dd5a9337be91d49.png",
+              "size": "small"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/64s/b59e11c1fc97e2169dd5a9337be91d49.png",
+              "size": "medium"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/174s/b59e11c1fc97e2169dd5a9337be91d49.png",
+              "size": "large"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/b59e11c1fc97e2169dd5a9337be91d49.png",
+              "size": "extralarge"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/b59e11c1fc97e2169dd5a9337be91d49.png",
+              "size": "mega"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/b59e11c1fc97e2169dd5a9337be91d49.png",
+              "size": ""
+            }
+          ]
+        },
+        {
+          "name": "Kylie Minogue",
+          "url": "https://www.last.fm/music/Kylie+Minogue",
+          "image": [
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/34s/58c6c4244deb490db2f77c13f73de1ed.png",
+              "size": "small"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/64s/58c6c4244deb490db2f77c13f73de1ed.png",
+              "size": "medium"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/174s/58c6c4244deb490db2f77c13f73de1ed.png",
+              "size": "large"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/58c6c4244deb490db2f77c13f73de1ed.png",
+              "size": "extralarge"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/58c6c4244deb490db2f77c13f73de1ed.png",
+              "size": "mega"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/58c6c4244deb490db2f77c13f73de1ed.png",
+              "size": ""
+            }
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "tag": [
+        {
+          "name": "pop",
+          "url": "https://www.last.fm/tag/pop"
+        },
+        {
+          "name": "female vocalists",
+          "url": "https://www.last.fm/tag/female+vocalists"
+        },
+        {
+          "name": "80s",
+          "url": "https://www.last.fm/tag/80s"
+        },
+        {
+          "name": "dance",
+          "url": "https://www.last.fm/tag/dance"
+        },
+        {
+          "name": "rock",
+          "url": "https://www.last.fm/tag/rock"
+        }
+      ]
+    },
+    "bio": {
+      "links": {
+        "link": {
+          "#text": "",
+          "rel": "original",
+          "href": "https://last.fm/music/Cher/+wiki"
+        }
+      },
+      "published": "17 Feb 2006, 22:09",
+      "summary": "Cher (born Cherilyn Sarkisian; May 20, 1946) is an Oscar- and Grammy-winning American singer and actress. A major figure for over five decades in the world of popular culture, she is often referred to as the Goddess of Pop for having first brought the sense of female autonomy and self-actualization into the entertainment industry.She is known for her distinctive contralto and for having worked extensively across media, as well as for continuously reinventing both her music and image, the latter of which has been known to induce controversy."
+    }
+  }
+}

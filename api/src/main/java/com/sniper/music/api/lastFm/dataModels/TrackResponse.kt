@@ -8,6 +8,6 @@ open class TrackResponse: Serializable {
 
     @SerializedName("results")
     @Expose
-    lateinit var result: Object
+    lateinit var result: Any
 
 }

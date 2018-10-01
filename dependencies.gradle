@@ -19,6 +19,7 @@ ext {
     retrofitVersion = '2.4.0'
 
     commonsLangVersion = '3.4'
+    commonsIoVersion = '2.4'
 
     jUnitVersion = '4.12'
     mockitoVersion = '2.22.0'
@@ -53,6 +54,7 @@ ext {
             retrofitGSONConverter       : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             okhttpLoggingInterceptor    : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             commonsLang                 : "org.apache.commons:commons-lang3:$commonsLangVersion",
+            commonsIO                   : "commons-io:commons-io:$commonsIoVersion",
             kotlinStandards             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     ]
 }
@@ -75,7 +77,9 @@ ext {
             supportEspressoIntents  : "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
             supportTestRules        : "com.android.support.test:rules:$jUnitRunnerVersion",
             supportTestRunner       : "com.android.support.test:runner:$jUnitRunnerVersion",
-            mockWebServer           : "com.squareup.okhttp3:mockwebserver:$mockServerVersion"
+
+            mockWebServer           : "com.squareup.okhttp3:mockwebserver:$mockServerVersion",
+            retrofitMock            : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
     ]
 }
 
@@ -87,6 +91,12 @@ ext.commonTestDependencies = { dependencies ->
     dependencies.testImplementation (librariesTest.powerMockMockito) {
         exclude module: 'mockito-all'
     }
+}
+
+ext.mockServerTestDependencies = { dependencies ->
+    dependencies.androidTestImplementation librariesTest.mockWebServer
+    dependencies.androidTestImplementation librariesTest.retrofitMock
+    dependencies.androidTestImplementation libraries.commonsIO
 }
 
 ext.commonKotlinTestDependencies = { dependencies ->
