@@ -1,16 +1,14 @@
 package com.sniper.music;
 
 import android.support.annotation.NonNull;
+import android.support.test.InstrumentationRegistry;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sniper.music.api.RetrofitClient;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -18,8 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.OkHttpClient;
+import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -33,13 +31,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MockRetrofitClient implements RetrofitClient {
 
     public static final String POST = "POST";
+    public static final String GET = "GET";
     private MockWebServer server;
     private Map<String, MockRetrofitResponse> responseMap = new HashMap<>();
     private Retrofit retrofit;
-
-    public MockRetrofitClient(OkHttpClient okHttpClient) {
-        this(null, okHttpClient);
-    }
 
     public MockRetrofitClient(Converter.Factory converterFactory, OkHttpClient okHttpClient) {
         if(converterFactory == null) {
@@ -155,10 +150,10 @@ public class MockRetrofitClient implements RetrofitClient {
                     );
                 }
 
-                InputStream io = new ResourceToStreamParser().fetch(response.getResponseFilePath());
                 try {
-                    mockResponse.setBody(IOUtils.toString(io));
-                } catch (IOException e) {
+                    String responseBody = RestServiceResourceParser.getJsonStringFromFile(InstrumentationRegistry.getInstrumentation().getContext(), response.getResponseFilePath());
+                    mockResponse.setBody(responseBody);
+                } catch (Exception e) {
                     System.out.println("Problem with io : " + e.getMessage() + " " + response.getResponseFilePath());
                     System.out.println("Problem with io : " + getClass().getResource(response.getResponseFilePath()));
                     e.printStackTrace();

@@ -7,6 +7,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.sniper.music.annotations.DetailsScreenTest;
 import com.sniper.music.annotations.SmokeTest;
 import com.sniper.music.annotations.StableTest;
 import com.sniper.music.base.intents.IntentExtras;
@@ -22,13 +23,12 @@ import org.junit.runner.RunWith;
 
 @SmokeTest
 @StableTest
+@DetailsScreenTest
 @RunWith(AndroidJUnit4.class)
 public class DetailsScreenUseCaseTests {
 
     private static DetailsConfigurator detailsConfigurator = new DetailsConfigurator();
 
-//    @Rule
-//    public RxIdlingResourceRule rxIdlingResourceRule = new RxIdlingResourceRule();
     @Rule
     public ActivityTestRule<DetailsActivity> activityRule = new ActivityTestRule<DetailsActivity>(DetailsActivity.class) {
         @Override
@@ -58,12 +58,8 @@ public class DetailsScreenUseCaseTests {
     }
 
     @Test
-    public void test_all_expected_views_are_visible() {
-        robot.areAllViewsVisible();
-    }
-
-    @Test
-    public void test_all_views_are_with_expected_text_information() {
-        robot.areAllTextViewsWithExpectedText();
+    public void test_user_sees_selected_artist_information() {
+        robot.areAllViewsVisible()
+                .areAllViewsWithExpectedInformation();
     }
 }

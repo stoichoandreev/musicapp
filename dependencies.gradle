@@ -19,7 +19,6 @@ ext {
     retrofitVersion = '2.4.0'
 
     commonsLangVersion = '3.4'
-    commonsIoVersion = '2.4'
 
     jUnitVersion = '4.12'
     mockitoVersion = '2.22.0'
@@ -54,7 +53,6 @@ ext {
             retrofitGSONConverter       : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             okhttpLoggingInterceptor    : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             commonsLang                 : "org.apache.commons:commons-lang3:$commonsLangVersion",
-            commonsIO                   : "commons-io:commons-io:$commonsIoVersion",
             kotlinStandards             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     ]
 }
@@ -96,7 +94,6 @@ ext.commonTestDependencies = { dependencies ->
 ext.mockServerTestDependencies = { dependencies ->
     dependencies.androidTestImplementation librariesTest.mockWebServer
     dependencies.androidTestImplementation librariesTest.retrofitMock
-    dependencies.androidTestImplementation libraries.commonsIO
 }
 
 ext.commonKotlinTestDependencies = { dependencies ->

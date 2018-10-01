@@ -17,7 +17,9 @@ public class LastFMConfigurator {
     RetrofitClient lastFMClient;
 
     public void setup() {
-        ((ApplicationTestComponent) ComponentsManager.get().getAppComponent()).inject(this);
+        ((ApplicationTestComponent) ComponentsManager.get()
+                .getAppComponent())
+                .inject(this);
         if (lastFMClient instanceof MockRetrofitClient) {
             ((MockRetrofitClient) lastFMClient).setup();
         }
