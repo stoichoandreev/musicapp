@@ -1,7 +1,7 @@
 ext {
-    appLinkFullBaseUrl = "\"https://com.sniper.music\""
+    appLinkFullBaseUrl = "\"music://com.sniper.music\""
     appLinkHost = "\"com.sniper.music\""
-    appLinkScheme = "\"https\""
+    appLinkScheme = "\"music\""
 
     appLinkHomeScreen = "\"/home\""
     appLinkDetailsScreen = "\"/details\""

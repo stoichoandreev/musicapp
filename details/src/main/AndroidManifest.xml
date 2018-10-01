@@ -19,7 +19,7 @@
                 <data
                     android:host="com.sniper.music"
                     android:pathPattern="/details"
-                    android:scheme="https"/>
+                    android:scheme="music"/>
             </intent-filter>
         </activity>
     </application>
