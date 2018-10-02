@@ -1,4 +1,4 @@
-package com.sniper.music.api.lastFm
+package com.sniper.music.api.lastfm
 
 import okhttp3.Interceptor
 import okhttp3.Response

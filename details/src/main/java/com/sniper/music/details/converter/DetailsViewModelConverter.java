@@ -2,8 +2,8 @@ package com.sniper.music.details.converter;
 
 import android.support.annotation.NonNull;
 
-import com.sniper.music.api.lastFm.dataModels.ArtistInfoResponse;
-import com.sniper.music.api.lastFm.dataModels.Tag;
+import com.sniper.music.api.lastfm.models.ArtistInfoResponse;
+import com.sniper.music.api.lastfm.models.Tag;
 import com.sniper.music.details.models.DetailsViewModel;
 
 import java.util.List;

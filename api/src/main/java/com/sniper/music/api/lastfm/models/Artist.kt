@@ -1,4 +1,4 @@
-package com.sniper.music.api.lastFm.dataModels
+package com.sniper.music.api.lastfm.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
