@@ -15,7 +15,7 @@ android {
         versionCode rootProject.ext.versionCode as Integer
         versionName rootProject.ext.versionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.sniper.music.MockTestRunner"
 
         resConfigs "en"
     }
@@ -43,4 +43,12 @@ android {
 dependencies {
     implementation project(':home')
     implementation project(':details')
+
+    androidTestAnnotationProcessor rootProject.libraries.daggerCompiler
+    androidTestAnnotationProcessor rootProject.libraries.javaxAnnotationProcessor
+
+    commonAndroidTestDependencies(it)
+    mockServerTestDependencies(it)
+
+
 }

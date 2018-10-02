@@ -75,7 +75,9 @@ ext {
             supportEspressoIntents  : "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
             supportTestRules        : "com.android.support.test:rules:$jUnitRunnerVersion",
             supportTestRunner       : "com.android.support.test:runner:$jUnitRunnerVersion",
-            mockWebServer           : "com.squareup.okhttp3:mockwebserver:$mockServerVersion"
+
+            mockWebServer           : "com.squareup.okhttp3:mockwebserver:$mockServerVersion",
+            retrofitMock            : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
     ]
 }
 
@@ -87,6 +89,11 @@ ext.commonTestDependencies = { dependencies ->
     dependencies.testImplementation (librariesTest.powerMockMockito) {
         exclude module: 'mockito-all'
     }
+}
+
+ext.mockServerTestDependencies = { dependencies ->
+    dependencies.androidTestImplementation librariesTest.mockWebServer
+    dependencies.androidTestImplementation librariesTest.retrofitMock
 }
 
 ext.commonKotlinTestDependencies = { dependencies ->

@@ -1,0 +1,136 @@
+{
+  "results": {
+    "opensearch:Query": {
+      "#text": "",
+      "role": "request",
+      "searchTerms": "cher",
+      "startPage": "1"
+    },
+    "opensearch:totalResults": "59911",
+    "opensearch:startIndex": "0",
+    "opensearch:itemsPerPage": "30",
+    "artistmatches": {
+      "artist": [
+        {
+          "name": "Cher",
+          "listeners": "1077240",
+          "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+          "url": "https://www.last.fm/music/Cher",
+          "streamable": "0",
+          "image": [
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/34s/879a88760860cc472d826ca4e7fc5ad6.png",
+              "size": "small"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/64s/879a88760860cc472d826ca4e7fc5ad6.png",
+              "size": "medium"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/174s/879a88760860cc472d826ca4e7fc5ad6.png",
+              "size": "large"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/879a88760860cc472d826ca4e7fc5ad6.png",
+              "size": "extralarge"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/879a88760860cc472d826ca4e7fc5ad6.png",
+              "size": "mega"
+            }
+          ]
+        },
+        {
+          "name": "Cheryl Cole",
+          "listeners": "628147",
+          "mbid": "2d499150-1c42-4ffb-a90c-1cc635519d33",
+          "url": "https://www.last.fm/music/Cheryl+Cole",
+          "streamable": "0",
+          "image": [
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/34s/1687c1fce75c4369a2b0f5ada9e2d1b5.png",
+              "size": "small"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/64s/1687c1fce75c4369a2b0f5ada9e2d1b5.png",
+              "size": "medium"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/174s/1687c1fce75c4369a2b0f5ada9e2d1b5.png",
+              "size": "large"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/1687c1fce75c4369a2b0f5ada9e2d1b5.png",
+              "size": "extralarge"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/1687c1fce75c4369a2b0f5ada9e2d1b5.png",
+              "size": "mega"
+            }
+          ]
+        },
+        {
+          "name": "Cher Lloyd",
+          "listeners": "478573",
+          "mbid": "48fbfb0b-92ee-45eb-99c2-0bde4c05962e",
+          "url": "https://www.last.fm/music/Cher+Lloyd",
+          "streamable": "0",
+          "image": [
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/34s/b9a5a4461892280a4489d35217315610.png",
+              "size": "small"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/64s/b9a5a4461892280a4489d35217315610.png",
+              "size": "medium"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/174s/b9a5a4461892280a4489d35217315610.png",
+              "size": "large"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/b9a5a4461892280a4489d35217315610.png",
+              "size": "extralarge"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/b9a5a4461892280a4489d35217315610.png",
+              "size": "mega"
+            }
+          ]
+        },
+        {
+          "name": "Black Stone Cherry",
+          "listeners": "311606",
+          "mbid": "1801bd47-46ae-49ff-bfcd-6e01b562d880",
+          "url": "https://www.last.fm/music/Black+Stone+Cherry",
+          "streamable": "0",
+          "image": [
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/34s/4a877bc2675e48d2b23c0020ba659bf7.png",
+              "size": "small"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/64s/4a877bc2675e48d2b23c0020ba659bf7.png",
+              "size": "medium"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/174s/4a877bc2675e48d2b23c0020ba659bf7.png",
+              "size": "large"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/4a877bc2675e48d2b23c0020ba659bf7.png",
+              "size": "extralarge"
+            },
+            {
+              "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/4a877bc2675e48d2b23c0020ba659bf7.png",
+              "size": "mega"
+            }
+          ]
+        }
+      ]
+    },
+    "@attr": {
+      "for": "cher"
+    }
+  }
+}

@@ -17,7 +17,7 @@ public class MusicApplication extends Application {
         initComponents();
     }
 
-    private void initComponents() {
+    protected void initComponents() {
         final ApplicationComponent applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();

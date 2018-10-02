@@ -123,6 +123,7 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
 
     @Override
     public void showDetails(@NonNull DetailsViewModel detailsInfo) {
+        imageView.setContentDescription(detailsInfo.getImageUrl());
         ImageLoaderWrapper.loadImageFromUrl(imageView, detailsInfo.getImageUrl());
         titleView.setText(detailsInfo.getName());
         urlView.setText(Html.fromHtml(detailsInfo.getUrl()));
