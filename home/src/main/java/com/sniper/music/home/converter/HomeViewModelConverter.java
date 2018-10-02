@@ -2,8 +2,8 @@ package com.sniper.music.home.converter;
 
 import android.support.annotation.NonNull;
 
-import com.sniper.music.api.lastFm.dataModels.Artist;
-import com.sniper.music.api.lastFm.dataModels.ArtistResponse;
+import com.sniper.music.api.lastfm.models.Artist;
+import com.sniper.music.api.lastfm.models.ArtistResponse;
 import com.sniper.music.home.adapter.HomeAdapterType;
 import com.sniper.music.home.models.HomeAdapterViewModel;
 

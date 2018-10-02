@@ -1,13 +1,13 @@
-package com.sniper.music.api.lastFm.dataModels
+package com.sniper.music.api.lastfm.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-open class ArtistInfoResponse: Serializable {
+open class ArtistSimilar: Serializable {
 
     @SerializedName("artist")
     @Expose
-    lateinit var artistInfo: ArtistInfo
+    lateinit var artistList: List<Artist>
 
 }

@@ -3,7 +3,7 @@ package com.sniper.music.configurator;
 import com.sniper.music.retrofit.MockRetrofitClient;
 import com.sniper.music.retrofit.MockRetrofitResponse;
 import com.sniper.music.api.RetrofitClient;
-import com.sniper.music.api.lastFm.LastFMClient;
+import com.sniper.music.api.lastfm.LastFMClient;
 import com.sniper.music.dagger.ApplicationTestComponent;
 import com.sniper.music.base.di.ComponentsManager;
 

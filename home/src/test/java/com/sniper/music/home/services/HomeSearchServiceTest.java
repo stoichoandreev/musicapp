@@ -1,12 +1,12 @@
 package com.sniper.music.home.services;
 
-import com.sniper.music.api.lastFm.dataModels.AlbumResponse;
-import com.sniper.music.api.lastFm.dataModels.Artist;
-import com.sniper.music.api.lastFm.dataModels.ArtistMatches;
-import com.sniper.music.api.lastFm.dataModels.ArtistResponse;
-import com.sniper.music.api.lastFm.dataModels.ArtistResults;
-import com.sniper.music.api.lastFm.dataModels.ImageDataModel;
-import com.sniper.music.api.lastFm.dataModels.TrackResponse;
+import com.sniper.music.api.lastfm.models.AlbumResponse;
+import com.sniper.music.api.lastfm.models.Artist;
+import com.sniper.music.api.lastfm.models.ArtistMatches;
+import com.sniper.music.api.lastfm.models.ArtistResponse;
+import com.sniper.music.api.lastfm.models.ArtistResults;
+import com.sniper.music.api.lastfm.models.ImageDataModel;
+import com.sniper.music.api.lastfm.models.TrackResponse;
 import com.sniper.music.home.api.HomeSearchApi;
 import com.sniper.music.home.converter.HomeViewModelConverter;
 import com.sniper.music.home.models.HomeAdapterViewModel;
@@ -16,11 +16,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.MockitoRule;
 import org.powermock.api.mockito.PowerMockito;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +63,6 @@ public class HomeSearchServiceTest {
         final ArtistResponse artistResponse = getArtistResponse();
         final Observable<ArtistResponse> observableArtistResponse = Observable.just(artistResponse);
         when(mockedHomeSearchApi.artistSearch(query)).thenReturn(observableArtistResponse);
-//        when(mockedHomeViewModelConverter.extractListFromArtistResponse(artistResponse)).thenReturn(homeItems);
-//        when(resultObservableSpy.subscribeOn(mockedWorkerScheduler)).thenReturn(resultObservableSpy);
 
         //when
         final Observable<List<HomeAdapterViewModel>> result = tested.doArtistSearch(query);

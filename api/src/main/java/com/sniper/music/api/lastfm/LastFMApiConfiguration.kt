@@ -1,4 +1,4 @@
-package com.sniper.music.api.lastFm
+package com.sniper.music.api.lastfm
 
 import com.sniper.music.api.ApiConfiguration
 import com.sniper.music.api.Environment

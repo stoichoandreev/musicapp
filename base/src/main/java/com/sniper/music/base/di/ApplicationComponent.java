@@ -3,7 +3,7 @@ package com.sniper.music.base.di;
 import android.content.Context;
 
 import com.sniper.music.api.RetrofitClient;
-import com.sniper.music.api.lastFm.LastFMClient;
+import com.sniper.music.api.lastfm.LastFMClient;
 import com.sniper.music.base.MusicApplication;
 import com.sniper.music.base.di.modules.ApplicationModule;
 import com.sniper.music.base.di.modules.NetworkModule;

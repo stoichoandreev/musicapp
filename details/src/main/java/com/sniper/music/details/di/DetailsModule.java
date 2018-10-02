@@ -3,7 +3,7 @@ package com.sniper.music.details.di;
 import android.support.annotation.NonNull;
 
 import com.sniper.music.api.RetrofitClient;
-import com.sniper.music.api.lastFm.LastFMClient;
+import com.sniper.music.api.lastfm.LastFMClient;
 import com.sniper.music.base.di.modules.NetworkModule;
 import com.sniper.music.details.api.DetailsInfoApi;
 import com.sniper.music.details.converter.DetailsViewModelConverter;

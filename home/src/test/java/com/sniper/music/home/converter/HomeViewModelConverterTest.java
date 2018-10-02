@@ -1,10 +1,10 @@
 package com.sniper.music.home.converter;
 
-import com.sniper.music.api.lastFm.dataModels.Artist;
-import com.sniper.music.api.lastFm.dataModels.ArtistMatches;
-import com.sniper.music.api.lastFm.dataModels.ArtistResponse;
-import com.sniper.music.api.lastFm.dataModels.ArtistResults;
-import com.sniper.music.api.lastFm.dataModels.ImageDataModel;
+import com.sniper.music.api.lastfm.models.Artist;
+import com.sniper.music.api.lastfm.models.ArtistMatches;
+import com.sniper.music.api.lastfm.models.ArtistResponse;
+import com.sniper.music.api.lastfm.models.ArtistResults;
+import com.sniper.music.api.lastfm.models.ImageDataModel;
 import com.sniper.music.home.adapter.HomeAdapterType;
 import com.sniper.music.home.models.HomeAdapterViewModel;
 

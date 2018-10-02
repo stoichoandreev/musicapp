@@ -1,9 +1,9 @@
 package com.sniper.music.home.api;
 
 import com.sniper.music.api.EndPoints;
-import com.sniper.music.api.lastFm.dataModels.AlbumResponse;
-import com.sniper.music.api.lastFm.dataModels.ArtistResponse;
-import com.sniper.music.api.lastFm.dataModels.TrackResponse;
+import com.sniper.music.api.lastfm.models.AlbumResponse;
+import com.sniper.music.api.lastfm.models.ArtistResponse;
+import com.sniper.music.api.lastfm.models.TrackResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
