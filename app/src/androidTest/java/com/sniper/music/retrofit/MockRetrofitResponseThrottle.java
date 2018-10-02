@@ -1,8 +1,9 @@
-package com.sniper.music;
+package com.sniper.music.retrofit;
 
 import java.util.concurrent.TimeUnit;
 
 public class MockRetrofitResponseThrottle {
+
     private long throttleBytesPerPeriod;
     private long throttlePeriodAmount;
     private TimeUnit throttlePeriodUnit;

@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.sniper.music.api.ApiConfiguration;
 import com.sniper.music.api.RetrofitClient;
-import com.sniper.music.MockRetrofitClient;
+import com.sniper.music.retrofit.MockRetrofitClient;
 import com.sniper.music.base.di.modules.NetworkModule;
 
 import io.reactivex.Scheduler;

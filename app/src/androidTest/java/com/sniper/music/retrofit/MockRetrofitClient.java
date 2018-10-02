@@ -1,4 +1,4 @@
-package com.sniper.music;
+package com.sniper.music.retrofit;
 
 import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
@@ -69,7 +69,7 @@ public class MockRetrofitClient implements RetrofitClient {
         try {
             server.start();
         } catch (IOException | IllegalStateException e) {
-            System.out.println("Error starting mocked webserver " + e.getMessage());
+            System.out.println("Error starting mocked web server " + e.getMessage());
         }
     }
 
@@ -77,7 +77,7 @@ public class MockRetrofitClient implements RetrofitClient {
         try {
             server.shutdown();
         } catch (IOException | IllegalStateException e) {
-            System.out.println("Error starting mocked webserver " + e.getMessage());
+            System.out.println("Error starting mocked web server " + e.getMessage());
         }
     }
 
@@ -107,7 +107,7 @@ public class MockRetrofitClient implements RetrofitClient {
     public class MockDispatcher extends Dispatcher {
 
         @Override
-        public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
+        public MockResponse dispatch(RecordedRequest request) {
             String path;
             if (POST.equals(request.getMethod())) {
                 path = request.getPath() + request.getBody().readUtf8();
@@ -129,33 +129,30 @@ public class MockRetrofitClient implements RetrofitClient {
             }
 
             if (response != null) {
-                MockResponse mockResponse = new MockResponse();
-
+                final MockResponse mockResponse = new MockResponse();
                 int responseCode = response.getResponseCode();
                 if (responseCode != 0) {
                     mockResponse.setResponseCode(responseCode);
                 }
 
-                SocketPolicy socketPolicy = response.getSocketPolicy();
+                final SocketPolicy socketPolicy = response.getSocketPolicy();
                 if (socketPolicy != null) {
                     mockResponse.setSocketPolicy(socketPolicy);
                 }
 
-                MockRetrofitResponseThrottle responseThrottle = response.getResponseThrottle();
+                final MockRetrofitResponseThrottle responseThrottle = response.getResponseThrottle();
                 if (responseThrottle != null) {
-                    mockResponse.throttleBody(
-                            responseThrottle.getThrottleBytesPerPeriod(),
+                    mockResponse.throttleBody(responseThrottle.getThrottleBytesPerPeriod(),
                             responseThrottle.getThrottlePeriodAmount(),
-                            responseThrottle.getThrottlePeriodUnit()
-                    );
+                            responseThrottle.getThrottlePeriodUnit());
                 }
 
                 try {
-                    String responseBody = RestServiceResourceParser.getJsonStringFromFile(InstrumentationRegistry.getInstrumentation().getContext(), response.getResponseFilePath());
+                    final String responseBody = RestServiceResourceParser.getJsonStringFromFile(InstrumentationRegistry.getInstrumentation().getContext(), response.getResponseFilePath());
                     mockResponse.setBody(responseBody);
+                    System.out.println("Request body set");
                 } catch (Exception e) {
                     System.out.println("Problem with io : " + e.getMessage() + " " + response.getResponseFilePath());
-                    System.out.println("Problem with io : " + getClass().getResource(response.getResponseFilePath()));
                     e.printStackTrace();
                 }
 

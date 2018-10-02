@@ -1,4 +1,4 @@
-package com.sniper.music;
+package com.sniper.music.retrofit;
 
 import android.content.Context;
 
@@ -11,19 +11,19 @@ public class RestServiceResourceParser {
     public static String getJsonStringFromFile(Context context, String filePath) throws Exception {
         final InputStream stream = context.getResources().getAssets().open(filePath);
 
-        String ret = convertStreamToString(stream);
+        final String result = convertStreamToString(stream);
         stream.close();
-        return ret;
+        return result;
     }
 
     private static String convertStreamToString(InputStream is) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        final StringBuilder stringBuilder = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
-            sb.append(line).append("\n");
+            stringBuilder.append(line).append("\n");
         }
         reader.close();
-        return sb.toString();
+        return stringBuilder.toString();
     }
 }

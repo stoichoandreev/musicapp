@@ -1,9 +1,10 @@
-package com.sniper.music;
+package com.sniper.music.retrofit;
 
 
 import okhttp3.mockwebserver.SocketPolicy;
 
 public class MockRetrofitResponse {
+
     private String path;
     private String responseFilePath;
     private String method;
