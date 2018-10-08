@@ -23,7 +23,6 @@ android {
         debug {
             debuggable true
             signingConfig signingConfigs.debug
-            applicationIdSuffix ".debug"
 
             buildConfigField 'String', 'TEST_TAGS', '"' + getTestTags() + '"'
             buildConfigField 'String', 'TEST_SCENARIO', '"' + getTestScenario() + '"'
@@ -63,6 +62,5 @@ dependencies {
 
     commonAndroidTestDependencies(it)
     mockServerTestDependencies(it)
-
 
 }

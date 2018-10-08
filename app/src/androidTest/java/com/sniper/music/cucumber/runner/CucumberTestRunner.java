@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.support.test.runner.AndroidJUnitRunner;
 
 import com.sniper.music.TestMusicApplication;
-import com.sniper.music.debug.test.BuildConfig;
+import com.sniper.music.test.BuildConfig;
 
 import cucumber.api.android.CucumberInstrumentationCore;
 
 @SuppressWarnings("unused")
 public class CucumberTestRunner extends AndroidJUnitRunner {
-//    public class CucumberTestRunner extends MonitoringInstrumentation {
 
     private static final String CUCUMBER_TAGS_KEY = "tags";
     private static final String CUCUMBER_SCENARIO_KEY = "name";
@@ -28,9 +27,6 @@ public class CucumberTestRunner extends AndroidJUnitRunner {
 
     @Override
     public void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
-//        Context context = InstrumentationRegistry.getContext();//getTargetContext();
-//        Log.d("Cucumber: ", "Instrumentation Context Package " + context.getPackageName());
         String tags = BuildConfig.TEST_TAGS;
         if (!tags.isEmpty()) {
             bundle.putString(CUCUMBER_TAGS_KEY, tags.replaceAll("\\s", ""));
@@ -42,7 +38,7 @@ public class CucumberTestRunner extends AndroidJUnitRunner {
             bundle.putString(CUCUMBER_SCENARIO_KEY, scenario);
         }
         instrumentationCore.create(bundle);
-//        super.onCreate(bundle);
+        super.onCreate(bundle);
     }
 
     @Override
