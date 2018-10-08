@@ -43,7 +43,7 @@ android {
 }
 
 def getInstrumentation() {
-    project.hasProperty('cucumber') ? 'com.sniper.music.runners.CucumberTestRunner' : 'com.sniper.music.runners.MockTestRunner'
+    project.hasProperty('cucumber') ? 'com.sniper.music.cucumber.runner.CucumberTestRunner' : 'com.sniper.music.espresso.runner.MockTestRunner'
 }
 
 def getTestTags() {
