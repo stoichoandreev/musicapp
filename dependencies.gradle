@@ -11,7 +11,7 @@ ext {
     javaRX2Version = '2.1.0'
     picassoVersion = '2.5.2'
     daggerVersion = '2.10'
-    javaxAnnotationVersion = '1.0'
+    javaxAnnotationVersion = '1.2'
     timberVersion = '4.7.1'
 
     gsonVersion = '2.8.5'
@@ -29,6 +29,7 @@ ext {
     assertJVersion = '3.6.2'
     kotlinMockitCoreVersion = '2.13.0'
     kotlinJunitRunnerVersion = '0.3.1'
+    cucumberVersion = '1.2.5'
 
     libraries = [
             supportAppcompatV7          : "com.android.support:appcompat-v7:$supportLibraryVersion",
@@ -44,7 +45,7 @@ ext {
             dagger                      : "com.google.dagger:dagger:$daggerVersion",
             daggerAnnotation            : 'javax.annotation:jsr250-api:1.0',
             daggerCompiler              : "com.google.dagger:dagger-compiler:$daggerVersion",
-            javaxAnnotationProcessor    : "javax.annotation:jsr250-api:$javaxAnnotationVersion",
+            javaxAnnotationProcessor    : "javax.annotation:javax.annotation-api:$javaxAnnotationVersion",
 
             gson                        : "com.google.code.gson:gson:$gsonVersion",
             okhttp                      : "com.squareup.okhttp3:okhttp:$okhttpVersion",
@@ -77,7 +78,10 @@ ext {
             supportTestRunner       : "com.android.support.test:runner:$jUnitRunnerVersion",
 
             mockWebServer           : "com.squareup.okhttp3:mockwebserver:$mockServerVersion",
-            retrofitMock            : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
+            retrofitMock            : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion",
+
+            cucumber                : "info.cukes:cucumber-android:$cucumberVersion",
+            cucumberPicocontainer   : "info.cukes:cucumber-picocontainer:$cucumberVersion"
     ]
 }
 
@@ -132,4 +136,7 @@ ext.commonAndroidTestDependencies = { dependencies ->
     dependencies.androidTestImplementation(librariesTest.supportTestRules) {
         exclude module: 'support-annotations'
     }
+
+    dependencies.androidTestImplementation(librariesTest.cucumber)
+    dependencies.androidTestImplementation(librariesTest.cucumberPicocontainer)
 }

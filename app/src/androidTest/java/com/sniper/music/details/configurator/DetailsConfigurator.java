@@ -21,7 +21,7 @@ public class DetailsConfigurator {
                 .responseCode(200)
                 .method(MockRetrofitClient.GET)
                 .path("?method=artist.getinfo&artist=Cher&api_key=b9304bb9f3e9c5397188fbb0381ade7d&format=json")
-                .responseFilePath("artist_details_info.json")
+                .responseFilePath("responses/artist_details_info.json")
                 .build();
         lastFMConfigurator.addResponse(mockRetrofitResponse);
     }
