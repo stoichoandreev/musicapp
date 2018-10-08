@@ -15,7 +15,7 @@ android {
         versionCode rootProject.ext.versionCode as Integer
         versionName rootProject.ext.versionName
 
-        testInstrumentationRunner "com.sniper.music.MockTestRunner"
+        testInstrumentationRunner getInstrumentation()
 
         resConfigs "en"
     }
@@ -24,6 +24,9 @@ android {
             debuggable true
             signingConfig signingConfigs.debug
             applicationIdSuffix ".debug"
+
+            buildConfigField 'String', 'TEST_TAGS', '"' + getTestTags() + '"'
+            buildConfigField 'String', 'TEST_SCENARIO', '"' + getTestScenario() + '"'
         }
         release {
             minifyEnabled false
@@ -39,6 +42,17 @@ android {
     }
 }
 
+def getInstrumentation() {
+    project.hasProperty('cucumber') ? 'com.sniper.music.runners.CucumberTestRunner' : 'com.sniper.music.runners.MockTestRunner'
+}
+
+def getTestTags() {
+    project.getProperties().get('tags') ?: ''
+}
+
+def getTestScenario() {
+    project.getProperties().get('scenario') ?: ''
+}
 
 dependencies {
     implementation project(':home')

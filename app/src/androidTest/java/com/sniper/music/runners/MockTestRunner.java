@@ -1,8 +1,10 @@
-package com.sniper.music;
+package com.sniper.music.runners;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.test.runner.AndroidJUnitRunner;
+
+import com.sniper.music.TestMusicApplication;
 
 public class MockTestRunner extends AndroidJUnitRunner {
 
