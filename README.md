@@ -1,5 +1,5 @@
 # musicapp
-Test project with modularisation. Instant app support MVP architecture (Dagger, Rx, Retrofit, Picasso). Mix between Kotlin and Java.
+Test project with modularisation, Instant app support, MVP architecture (Dagger, Rx, Retrofit, Picasso etc), Code base mix between Kotlin and Java, TDD work for the unit tests and BDD (Espresso, Cucumber) work for the UI tests and the E2E tests. 
 
 The API behind the project is LastFM Api [https://www.last.fm/api]
 
@@ -20,6 +20,12 @@ The API behind the project is LastFM Api [https://www.last.fm/api]
 ### To run all Details screen UI tests execute : 
 
 ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.sniper.music.DetailsScreenTest
+
+### To run all End-to-End tests written with Cucumber and BDD execute : 
+
+./gradlew connectedCheck -Pcucumber -Ptags="@e2e" 
+
+also run ./gradlew connectedCheck -Pcucumber -Ptags="@smoke" to run all smoke BDD tests
 
 ## RUN UNIT TESTS
 
