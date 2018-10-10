@@ -22,7 +22,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class HomeScreenRobot {
 
-    private SpecTest specTest = new SpecTest();
+    private final SpecTest specTest = new SpecTest();
 
     public HomeScreenRobot launchHomeScreen(ActivityTestRule<HomeActivity> testRule) {
         testRule.launchActivity(null);

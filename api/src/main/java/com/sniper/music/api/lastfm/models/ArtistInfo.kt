@@ -16,7 +16,7 @@ open class ArtistInfo: Serializable {
 
     @SerializedName("mbid")
     @Expose
-    lateinit var mbid: String
+    var mbid: String? = null
 
     @SerializedName("url")
     @Expose

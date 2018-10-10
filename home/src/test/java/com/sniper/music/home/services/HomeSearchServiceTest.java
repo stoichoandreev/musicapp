@@ -12,7 +12,6 @@ import com.sniper.music.home.converter.HomeViewModelConverter;
 import com.sniper.music.home.models.HomeAdapterViewModel;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -34,9 +33,6 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HomeSearchServiceTest {
-
-    @Rule
-    public RxImmediateSchedulerRule testTrampolineSchedulerRule = new RxImmediateSchedulerRule();
 
     @Mock
     private HomeSearchApi mockedHomeSearchApi;
@@ -61,8 +57,10 @@ public class HomeSearchServiceTest {
         //given
         final String query = "Sam Smith";
         final ArtistResponse artistResponse = getArtistResponse();
+        final List<HomeAdapterViewModel> convertedArtistResponseToViewModel = getArtistConvertedResponse();
         final Observable<ArtistResponse> observableArtistResponse = Observable.just(artistResponse);
         when(mockedHomeSearchApi.artistSearch(query)).thenReturn(observableArtistResponse);
+        when(mockedHomeViewModelConverter.extractListFromArtistResponse(artistResponse)).thenReturn(convertedArtistResponseToViewModel);
 
         //when
         final Observable<List<HomeAdapterViewModel>> result = tested.doArtistSearch(query);
@@ -176,5 +174,12 @@ public class HomeSearchServiceTest {
         response.setResult(artistResults);
 
         return response;
+    }
+
+    private List<HomeAdapterViewModel> getArtistConvertedResponse() {
+        final List<HomeAdapterViewModel> convertedResponseList = new ArrayList<>();
+        convertedResponseList.add(new HomeAdapterViewModel.Builder("mbId1").build());
+        convertedResponseList.add(new HomeAdapterViewModel.Builder("mbId2").build());
+        return convertedResponseList;
     }
 }

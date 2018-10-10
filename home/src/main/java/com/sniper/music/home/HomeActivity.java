@@ -162,7 +162,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
 
     @Override
     public void showError(String errorMessage) {
-        displayErrors(errorMessage);
+        displayError(errorMessage);
     }
 
     @Override

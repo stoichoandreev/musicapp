@@ -37,7 +37,7 @@ public abstract class BaseActivity<P extends Presenter, C extends BaseComponent>
         }
     }
 
-    protected void displayErrors(@NonNull String errorMessage) {
+    protected void displayError(@NonNull String errorMessage) {
         final View view = findViewById(android.R.id.content);
         if (view != null) {
             Snackbar.make(view, errorMessage, Snackbar.LENGTH_LONG).show();
