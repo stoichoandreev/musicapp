@@ -16,7 +16,7 @@ public class DetailsDisplaySteps {
 
     private static DetailsConfigurator detailsConfigurator = new DetailsConfigurator();
 
-    private DetailsScreenRobot robot = new DetailsScreenRobot();
+    private final DetailsScreenRobot robot = new DetailsScreenRobot();
 
     @Before
     public void setup() {

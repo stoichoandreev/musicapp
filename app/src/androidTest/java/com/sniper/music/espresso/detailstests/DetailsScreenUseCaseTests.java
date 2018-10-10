@@ -34,9 +34,9 @@ public class DetailsScreenUseCaseTests {
     public ActivityTestRule<DetailsActivity> activityRule = new ActivityTestRule<DetailsActivity>(DetailsActivity.class) {
         @Override
         protected Intent getActivityIntent() {
-            Context targetContext = InstrumentationRegistry.getInstrumentation()
+            final Context targetContext = InstrumentationRegistry.getInstrumentation()
                     .getTargetContext();
-            Intent result = new Intent(targetContext, DetailsActivity.class);
+            final Intent result = new Intent(targetContext, DetailsActivity.class);
             result.putExtra(IntentExtras.EXTRA_MB_ID, "bfcc6d75-a6a5-4bc6-8282-47aec8531818");
             result.putExtra(IntentExtras.EXTRA_NAME, "Cher");
             return result;
@@ -45,7 +45,8 @@ public class DetailsScreenUseCaseTests {
 
     @Rule
     public FinishOpenActivitiesRule finishOpenActivitiesRule = new FinishOpenActivitiesRule();
-    private DetailsScreenRobot robot = new DetailsScreenRobot();
+
+    private final DetailsScreenRobot robot = new DetailsScreenRobot();
 
     @BeforeClass
     public static void beforeClass() {

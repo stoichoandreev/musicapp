@@ -32,7 +32,7 @@ public class HomeScreenUseCaseTests {
     @Rule
     public FinishOpenActivitiesRule finishOpenActivitiesRule = new FinishOpenActivitiesRule();
 
-    private HomeScreenRobot robot = new HomeScreenRobot();
+    private final HomeScreenRobot robot = new HomeScreenRobot();
 
     @BeforeClass
     public static void beforeClass() {
