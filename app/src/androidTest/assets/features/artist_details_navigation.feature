@@ -2,7 +2,7 @@ Feature: Artist search and navigation to artist details
 
   @details
   @e2e
-  Scenario Outline: Display details for all search results
+  Scenario Outline: Display details for search results item
     When I start the application
     And I click search icon
     And I enter search query <query>
