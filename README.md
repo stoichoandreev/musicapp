@@ -7,7 +7,7 @@ The API behind the project is LastFM Api [https://www.last.fm/api]
 
 ### To run all Stable UI tests execute : 
 
-./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.sniper.music.SmokeTest
+./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.sniper.music.StableTest
 
 ### To run all Smoke UI tests execute : 
 
