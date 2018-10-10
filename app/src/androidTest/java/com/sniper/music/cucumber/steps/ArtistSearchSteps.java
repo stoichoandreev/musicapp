@@ -33,7 +33,6 @@ public class ArtistSearchSteps {
     @After
     public void tearDown() {
         homeConfigurator.tearDown();
-//        activityRule.finishActivity();
     }
 
     @Given("^I start the application$")
