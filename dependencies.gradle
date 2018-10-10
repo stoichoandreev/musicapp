@@ -30,6 +30,7 @@ ext {
     kotlinMockitCoreVersion = '2.13.0'
     kotlinJunitRunnerVersion = '0.3.1'
     cucumberVersion = '1.2.5'
+    cucumberJvmDepsVersion = '1.0.5'
 
     libraries = [
             supportAppcompatV7          : "com.android.support:appcompat-v7:$supportLibraryVersion",
@@ -81,7 +82,8 @@ ext {
             retrofitMock            : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion",
 
             cucumber                : "info.cukes:cucumber-android:$cucumberVersion",
-            cucumberPicocontainer   : "info.cukes:cucumber-picocontainer:$cucumberVersion"
+            cucumberPicocontainer   : "info.cukes:cucumber-picocontainer:$cucumberVersion",
+            cucumberJvmDeps         : "info.cukes:cucumber-jvm-deps:$cucumberJvmDepsVersion"
     ]
 }
 
@@ -137,6 +139,11 @@ ext.commonAndroidTestDependencies = { dependencies ->
         exclude module: 'support-annotations'
     }
 
-    dependencies.androidTestImplementation(librariesTest.cucumber)
-    dependencies.androidTestImplementation(librariesTest.cucumberPicocontainer)
+    dependencies.androidTestImplementation(librariesTest.cucumber) {
+        exclude module: 'cucumber-jvm-deps'
+    }
+    dependencies.androidTestImplementation(librariesTest.cucumberPicocontainer) {
+        exclude module: 'cucumber-jvm-deps'
+    }
+    dependencies.androidTestImplementation(librariesTest.cucumberJvmDeps)
 }
