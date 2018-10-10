@@ -1,6 +1,8 @@
 Feature: Artist Search
 
+  @home
   @smoke
+  @e2e
   Scenario Outline: Show Artist Search Results
     When I start the application
     And  I click search icon
@@ -15,7 +17,5 @@ Feature: Artist Search
     Examples:
       | query |
       |  Cher |
-#      | position  | query | name |
-#      | 0         |  Cher | Cher |
-#      | 1         |  Cher | Cheryl Cole |
-#      | 2         |  Cher | Cher Lloyd |
+      |  Cher |
+      |  Cher |

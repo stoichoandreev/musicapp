@@ -1,7 +1,7 @@
 package com.sniper.music.espresso.hometests.robot;
 
-import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 
 import com.sniper.music.R;
@@ -25,7 +25,7 @@ public class HomeScreenRobot {
     private SpecTest specTest = new SpecTest();
 
     public HomeScreenRobot launchHomeScreen(ActivityTestRule<HomeActivity> testRule) {
-        testRule.launchActivity(new Intent(InstrumentationRegistry.getInstrumentation().getTargetContext(), HomeActivity.class));
+        testRule.launchActivity(null);
         return this;
     }
 
@@ -57,6 +57,12 @@ public class HomeScreenRobot {
     public HomeScreenRobot isArtistNameDisplayed(int position, String artistName) {
         final RecyclerViewMatcher recyclerViewMatcher = specTest.withRecyclerView(R.id.search_results_recycler_view);
         onView(recyclerViewMatcher.atPosition(position)).check(matches(hasDescendant(withText(artistName))));
+        return this;
+    }
+
+    public HomeScreenRobot selectItemAt(int position) {
+        onView(withId(R.id.search_results_recycler_view))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(position, click()));
         return this;
     }
 }

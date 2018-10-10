@@ -5,9 +5,6 @@ import android.support.test.rule.ActivityTestRule;
 import com.sniper.music.espresso.hometests.configurator.HomeConfigurator;
 import com.sniper.music.espresso.hometests.robot.HomeScreenRobot;
 import com.sniper.music.home.HomeActivity;
-import com.sniper.music.utils.rules.FinishOpenActivitiesRule;
-
-import org.junit.Rule;
 
 import java.util.Map;
 
@@ -23,10 +20,7 @@ public class ArtistSearchSteps {
 
     private static HomeConfigurator homeConfigurator = new HomeConfigurator();
 
-    private ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class);
-
-    @Rule
-    public FinishOpenActivitiesRule finishOpenActivitiesRule = new FinishOpenActivitiesRule();
+    private ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class, false, false);
 
     private HomeScreenRobot robot = new HomeScreenRobot();
 
@@ -46,7 +40,7 @@ public class ArtistSearchSteps {
         robot.launchHomeScreen(activityRule);
     }
 
-    @And("^I click search icon")
+    @And("^I click search icon$")
     public void I_click_search_icon() {
         robot.clickSearchIcon();
     }
@@ -70,4 +64,8 @@ public class ArtistSearchSteps {
         robot.isArtistNameDisplayed(Integer.parseInt(position), artistName);
     }
 
+    @And("^I select artist at (\\d+)$")
+    public void I_select_artist_at_position(int position) {
+        robot.selectItemAt(position);
+    }
 }
