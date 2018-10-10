@@ -8,10 +8,10 @@ open class Tag: Serializable {
 
     @SerializedName("name")
     @Expose
-    lateinit var name: String
+    var name: String? = null
 
     @SerializedName("url")
     @Expose
-    lateinit var url: String
+    var url: String? = null
 
 }

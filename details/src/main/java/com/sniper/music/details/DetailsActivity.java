@@ -113,7 +113,7 @@ public class DetailsActivity extends BaseActivity<DetailsPresenter, DetailsCompo
 
     @Override
     public void showError(String errorMessage) {
-        displayErrors(errorMessage);
+        displayError(errorMessage);
     }
 
     @Override

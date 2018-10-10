@@ -8,6 +8,6 @@ open class Tags: Serializable {
 
     @SerializedName("tag")
     @Expose
-    lateinit var tagList: List<Tag>
+    var tagList: List<Tag>? = null
 
 }

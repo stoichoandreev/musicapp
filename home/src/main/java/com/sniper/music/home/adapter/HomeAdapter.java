@@ -27,7 +27,6 @@ public class HomeAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.listener = listener;
     }
 
-
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

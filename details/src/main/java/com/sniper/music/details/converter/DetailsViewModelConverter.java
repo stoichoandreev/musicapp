@@ -22,7 +22,7 @@ public class DetailsViewModelConverter {
         final DetailsViewModel.Builder detailsViewModelBuilder = new DetailsViewModel.Builder(response.getArtistInfo().getMbid());
         detailsViewModelBuilder.name(response.getArtistInfo().getName());
         detailsViewModelBuilder.url(response.getArtistInfo().getUrl());
-        detailsViewModelBuilder.imageUrl(response.getArtistInfo().getImages().size() > 2 ? response.getArtistInfo().getImages().get(2).getUrl() : response.getArtistInfo().getImages().get(2).getUrl());
+        detailsViewModelBuilder.imageUrl(response.getArtistInfo().getImages().size() > 2 ? response.getArtistInfo().getImages().get(2).getUrl() : response.getArtistInfo().getImages().get(1).getUrl());
         detailsViewModelBuilder.listeners("Artist Listeners : " + response.getArtistInfo().getStats().getListeners());
         detailsViewModelBuilder.playCount("Was Played : " + response.getArtistInfo().getStats().getPlaycount());
         if (response.getArtistInfo().getTags().getTagList() != null && response.getArtistInfo().getTags().getTagList().size() > 0) {

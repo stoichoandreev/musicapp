@@ -1,11 +1,10 @@
 package com.sniper.music.details.models;
 
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 public class DetailsViewModel {
 
-    @NonNull
+    @Nullable
     private String mbID;
     @Nullable
     private String name;
@@ -22,12 +21,11 @@ public class DetailsViewModel {
     @Nullable
     private String[] tags;
 
-
     private DetailsViewModel() {
         //no direct initialization
     }
 
-    @NonNull
+    @Nullable
     public String getMbID() {
         return mbID;
     }
@@ -47,12 +45,12 @@ public class DetailsViewModel {
         return imageUrl;
     }
 
-    @NonNull
+    @Nullable
     public String getListeners() {
         return listeners;
     }
 
-    @NonNull
+    @Nullable
     public String getPlayCount() {
         return playCount;
     }
@@ -78,7 +76,7 @@ public class DetailsViewModel {
         private String summary;
         private String[] tags;
 
-        public Builder(@NonNull String mbID) {
+        public Builder(@Nullable String mbID) {
             this.mbID = mbID;
         }
 
@@ -97,22 +95,22 @@ public class DetailsViewModel {
             return this;
         }
 
-        public Builder listeners(String listeners) {
+        public Builder listeners(@Nullable String listeners) {
             this.listeners = listeners;
             return this;
         }
 
-        public Builder summary(String summary) {
+        public Builder summary(@Nullable String summary) {
             this.summary = summary;
             return this;
         }
 
-        public Builder playCount(String playCount) {
+        public Builder playCount(@Nullable String playCount) {
             this.playCount = playCount;
             return this;
         }
 
-        public Builder tags(String[] tags) {
+        public Builder tags(@Nullable String[] tags) {
             this.tags = tags;
             return this;
         }
