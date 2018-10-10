@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnitRunner;
 
 import com.sniper.music.TestMusicApplication;
 
+@SuppressWarnings("unused")
 public class MockTestRunner extends AndroidJUnitRunner {
 
     @Override

@@ -56,7 +56,12 @@ public class HomeScreenUseCaseTests {
     }
 
     @Test
-    public void test_user_clicks_on_search_icon_enters_search_query_and_sees_expected_search_results() {
-        robot.clickSearchIcon().enterSearchQuery("Cher").isExpectedSearchResultDisplayed();
+    public void test_user_enters_search_query_and_sees_expected_search_results() {
+        robot.clickSearchIcon().enterSearchQuery("Cher")
+                .closeKeyboard()
+                .isArtistNameDisplayed(0, "Cher")
+                .isArtistNameDisplayed(1, "Cheryl Cole")
+                .isArtistNameDisplayed(2, "Cher Lloyd")
+                .isArtistNameDisplayed(3, "Black Stone Cherry");
     }
 }

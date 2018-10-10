@@ -26,7 +26,7 @@ public class HomeScreenRobot {
 
     public HomeScreenRobot launchHomeScreen(ActivityTestRule<HomeActivity> testRule) {
         testRule.launchActivity(new Intent(InstrumentationRegistry.getInstrumentation().getTargetContext(), HomeActivity.class));
-        return new HomeScreenRobot();
+        return this;
     }
 
     public HomeScreenRobot isSearchIconVisible() {
@@ -57,21 +57,6 @@ public class HomeScreenRobot {
     public HomeScreenRobot isArtistNameDisplayed(int position, String artistName) {
         final RecyclerViewMatcher recyclerViewMatcher = specTest.withRecyclerView(R.id.search_results_recycler_view);
         onView(recyclerViewMatcher.atPosition(position)).check(matches(hasDescendant(withText(artistName))));
-        return this;
-    }
-
-    public HomeScreenRobot isExpectedSearchResultDisplayed() {
-        specTest.closeSoftKeyboard();
-        onView(withId(R.id.search_results_recycler_view)).check(matches(isDisplayed()));
-        final RecyclerViewMatcher recyclerViewMatcher = specTest.withRecyclerView(R.id.search_results_recycler_view);
-        onView(recyclerViewMatcher.atPosition(0))
-                .check(matches(hasDescendant(withText("Cher"))));
-        onView(recyclerViewMatcher.atPosition(1))
-                .check(matches(hasDescendant(withText("Cheryl Cole"))));
-        onView(recyclerViewMatcher.atPosition(2))
-                .check(matches(hasDescendant(withText("Cher Lloyd"))));
-        onView(recyclerViewMatcher.atPosition(3))
-                .check(matches(hasDescendant(withText("Black Stone Cherry"))));
         return this;
     }
 }

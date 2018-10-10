@@ -9,5 +9,5 @@ import cucumber.api.CucumberOptions;
 )
 @SuppressWarnings("unused")
 public class CucumberTestCase {
-    //no implementation
+    //no implementation needed
 }

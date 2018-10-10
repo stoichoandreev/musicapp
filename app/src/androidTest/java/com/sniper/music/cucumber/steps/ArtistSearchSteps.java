@@ -51,11 +51,6 @@ public class ArtistSearchSteps {
         robot.clickSearchIcon();
     }
 
-//    @Then("^I expect to see the following artist search results$")
-//    public void I_expect_to_see_the_following_artist_search_results() {
-//        robot.isExpectedSearchResultDisplayed();
-//    }
-
     @And("^I enter search query (\\S+)$")
     public void I_enter_search_query(String query) {
         robot.enterSearchQuery(query);
@@ -75,6 +70,4 @@ public class ArtistSearchSteps {
         robot.isArtistNameDisplayed(Integer.parseInt(position), artistName);
     }
 
-
 }
-
