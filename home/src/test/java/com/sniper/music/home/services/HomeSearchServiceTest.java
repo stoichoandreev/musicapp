@@ -12,7 +12,6 @@ import com.sniper.music.home.converter.HomeViewModelConverter;
 import com.sniper.music.home.models.HomeAdapterViewModel;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -34,9 +33,6 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HomeSearchServiceTest {
-
-    @Rule
-    public RxImmediateSchedulerRule testTrampolineSchedulerRule = new RxImmediateSchedulerRule();
 
     @Mock
     private HomeSearchApi mockedHomeSearchApi;
