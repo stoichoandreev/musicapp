@@ -1,4 +1,4 @@
-package com.sniper.music.utils.rules;
+package com.sniper.music.utils;
 
 import android.app.Activity;
 import android.os.Handler;

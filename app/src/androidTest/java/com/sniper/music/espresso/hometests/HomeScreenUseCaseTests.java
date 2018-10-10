@@ -10,7 +10,7 @@ import com.sniper.music.espresso.annotations.StableTest;
 import com.sniper.music.home.HomeActivity;
 import com.sniper.music.espresso.hometests.configurator.HomeConfigurator;
 import com.sniper.music.espresso.hometests.robot.HomeScreenRobot;
-import com.sniper.music.utils.rules.FinishOpenActivitiesRule;
+import com.sniper.music.utils.FinishOpenActivitiesRule;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

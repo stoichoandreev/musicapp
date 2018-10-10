@@ -24,7 +24,7 @@ public final class ActivityFinisher implements Runnable {
     @Nullable
     private List<Activity> activities;
 
-    public ActivityFinisher() {
+    private ActivityFinisher() {
         this.activityLifecycleMonitor = ActivityLifecycleMonitorRegistry.getInstance();
     }
 
@@ -35,7 +35,7 @@ public final class ActivityFinisher implements Runnable {
     }
 
     /**
-     * Use this option to finish activities if you can't use {@link com.sniper.music.utils.rules.FinishOpenActivitiesRule}
+     * Use this option to finish activities if you can't use {@link FinishOpenActivitiesRule}
      * For example in Cucumber tests where the runner is {@link com.sniper.music.cucumber.runner.CucumberTestRunner}
      * and we have multiple Activities open at the sane test
      */

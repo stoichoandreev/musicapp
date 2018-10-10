@@ -14,7 +14,7 @@ import com.sniper.music.base.intents.IntentExtras;
 import com.sniper.music.details.DetailsActivity;
 import com.sniper.music.espresso.detailstests.configurator.DetailsConfigurator;
 import com.sniper.music.espresso.detailstests.robot.DetailsScreenRobot;
-import com.sniper.music.utils.rules.FinishOpenActivitiesRule;
+import com.sniper.music.utils.FinishOpenActivitiesRule;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

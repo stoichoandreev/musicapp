@@ -61,8 +61,10 @@ public class HomeSearchServiceTest {
         //given
         final String query = "Sam Smith";
         final ArtistResponse artistResponse = getArtistResponse();
+        final List<HomeAdapterViewModel> convertedArtistResponseToViewModel = getArtistConvertedResponse();
         final Observable<ArtistResponse> observableArtistResponse = Observable.just(artistResponse);
         when(mockedHomeSearchApi.artistSearch(query)).thenReturn(observableArtistResponse);
+        when(mockedHomeViewModelConverter.extractListFromArtistResponse(artistResponse)).thenReturn(convertedArtistResponseToViewModel);
 
         //when
         final Observable<List<HomeAdapterViewModel>> result = tested.doArtistSearch(query);
@@ -176,5 +178,12 @@ public class HomeSearchServiceTest {
         response.setResult(artistResults);
 
         return response;
+    }
+
+    private List<HomeAdapterViewModel> getArtistConvertedResponse() {
+        final List<HomeAdapterViewModel> convertedResponseList = new ArrayList<>();
+        convertedResponseList.add(new HomeAdapterViewModel.Builder("mbId1").build());
+        convertedResponseList.add(new HomeAdapterViewModel.Builder("mbId2").build());
+        return convertedResponseList;
     }
 }
