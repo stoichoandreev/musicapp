@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.sniper.music.details.models.DetailsViewModel;
 import com.sniper.music.details.services.DetailsInfoService;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;
@@ -37,7 +38,9 @@ public class DefaultDetailsPresenter implements DetailsPresenter<DetailsPresente
 
         disposables.add(paramSubject.doOnNext(newSearch -> showHideLoadingSubject.onNext(true))
                 .flatMap(param -> detailsInfoService.getArtistInformation(param))
-                .subscribe(viewModel -> detailsViewModelSubject.onNext(viewModel), error -> onErrorSubject.onNext(error)));
+                .doOnError(error -> onErrorSubject.onNext(error))
+                .onExceptionResumeNext(Observable.empty())
+                .subscribe(viewModel -> detailsViewModelSubject.onNext(viewModel)));
 
         disposables.add(detailsViewModelSubject.subscribe(viewModel -> {
             if (view != null) {
@@ -48,6 +51,7 @@ public class DefaultDetailsPresenter implements DetailsPresenter<DetailsPresente
 
         disposables.add(onErrorSubject.subscribe(error -> {
             if (view != null) {
+                showHideLoadingSubject.onNext(false);
                 view.showError(error.getMessage());
             }
         }));
