@@ -83,7 +83,7 @@ public class DefaultDetailsPresenterTest {
     }
 
     @Test
-    public void test_presenter_displays_and_hide_progress_loader_when_fetches_search_results() {
+    public void test_presenter_displays_and_hides_progress_loader_when_fetches_details_info() {
         //given
         final String query = "Cher";
         final DetailsViewModel viewModel = new DetailsViewModel.Builder("dad").build();
@@ -96,7 +96,7 @@ public class DefaultDetailsPresenterTest {
     }
 
     @Test
-    public void test_presenter_does_not_display_progress_loader_when_fetches_search_results() {
+    public void test_presenter_does_not_display_progress_loader_when_fetches_details_info() {
         //given
         final String query = null;
         //when
@@ -106,7 +106,7 @@ public class DefaultDetailsPresenterTest {
     }
 
     @Test
-    public void test_presenter_displays_error_message_when_fetches_search_results() {
+    public void test_presenter_displays_error_message_when_fetches_details_info() {
         //given
         final String query = "Metal";
         final String errorMessage = "Some Error";
@@ -114,6 +114,7 @@ public class DefaultDetailsPresenterTest {
         //when
         tested.fetchDetails(query);
         //test
+        Mockito.verify(mockedView).showLoading(false);
         Mockito.verify(mockedView).showError(errorMessage);
     }
 

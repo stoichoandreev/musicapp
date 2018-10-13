@@ -66,6 +66,7 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
 
         disposables.add(onErrorSubject.subscribe(error -> {
             if (view != null) {
+                showHideLoadingSubject.onNext(false);
                 view.showError(error.getMessage());
             }
         }));
@@ -80,8 +81,10 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
                 .withLatestFrom(searchParamsSubject, Pair::of)
                 .debounce(DEBOUNCE_TIMEOUT, TimeUnit.MILLISECONDS, debounceWorker)
                 .filter(pair -> pair.getRight() != null && pair.getRight().length() >= KEY_WORD_MIN_SIZE)
-                .switchMap(pair -> searchService.doArtistSearch(pair.getRight()).onExceptionResumeNext(Observable.empty()))
-                .subscribe(response -> viewModelListSubject.onNext(response), error -> onErrorSubject.onNext(error)));
+                .switchMap(pair -> searchService.doArtistSearch(pair.getRight())
+                        .doOnError(error -> onErrorSubject.onNext(error))
+                        .onExceptionResumeNext(Observable.empty()))
+                .subscribe(response -> viewModelListSubject.onNext(response)));
     }
 
     @Override

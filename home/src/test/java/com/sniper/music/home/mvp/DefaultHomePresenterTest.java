@@ -124,6 +124,7 @@ public class DefaultHomePresenterTest {
         //when
         tested.fetchSearchResults(query);
         //test
+        Mockito.verify(mockedView).showLoading(false);
         Mockito.verify(mockedView).showError(errorMessage);
     }
 
