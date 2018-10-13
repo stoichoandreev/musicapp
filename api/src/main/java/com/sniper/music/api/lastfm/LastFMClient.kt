@@ -25,6 +25,7 @@ class LastFMClient(converterFactory: Converter.Factory,
         const val GSON_CONVERTER_FACTORY = "LastFMGSONConverterFactory"
         const val RX_CALL_ADAPTER_FACTORY = "LastFMRXLastFMCallAdapterFactory"
         const val API_CONFIGURATION = "LastFMApiConfiguration"
+        const val CERTIFICATE_PINNER = "LastFMApiCertificatePinner"
     }
 
     override fun <T> api(service: Class<T>): T {

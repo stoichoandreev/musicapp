@@ -26,6 +26,7 @@ import dagger.Provides;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
@@ -66,11 +67,13 @@ public class NetworkModule {
     @Named(DEBUG_OK_HTTP_CLIENT)
     public OkHttpClient provideDebugOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
                                                  @NonNull @Named(HTTP_BODY_LOGGING) HttpLoggingInterceptor loggingInterceptor,
-                                                 @NonNull LastFMClientInterceptor clientInterceptor) {
+                                                 @NonNull LastFMClientInterceptor clientInterceptor,
+                                                 @NonNull @Named(LastFMClient.CERTIFICATE_PINNER) CertificatePinner certificatePinner) {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(okHttpConfig.getConnectTimeout(), TimeUnit.SECONDS)
                 .readTimeout(okHttpConfig.getReadTimeout(), TimeUnit.SECONDS)
                 .writeTimeout(okHttpConfig.getWriteTimeout(), TimeUnit.SECONDS)
+                .certificatePinner(certificatePinner)
                 .addInterceptor(loggingInterceptor);
         //we can add Stetho Interceptor here as well
         builder.interceptors().add(clientInterceptor);
@@ -81,11 +84,13 @@ public class NetworkModule {
     @ApplicationScope
     @Named(RELEASE_OK_HTTP_CLIENT)
     public OkHttpClient provideSafeOkHttpClient(@NonNull OKHttpConfig okHttpConfig,
-                                                @NonNull LastFMClientInterceptor clientInterceptor) {
+                                                @NonNull LastFMClientInterceptor clientInterceptor,
+                                                @NonNull @Named(LastFMClient.CERTIFICATE_PINNER) CertificatePinner certificatePinner) {
         return new OkHttpClient.Builder()
                 .connectTimeout(okHttpConfig.getConnectTimeout(), TimeUnit.SECONDS)
                 .readTimeout(okHttpConfig.getReadTimeout(), TimeUnit.SECONDS)
                 .writeTimeout(okHttpConfig.getWriteTimeout(), TimeUnit.SECONDS)
+                .certificatePinner(certificatePinner)
                 .addInterceptor(clientInterceptor)
                 .build();
     }
@@ -158,5 +163,14 @@ public class NetworkModule {
     @Named(MAIN_THREAD)
     public Scheduler provideUiScheduler() {
         return AndroidSchedulers.mainThread();
+    }
+
+    @Provides
+    @ApplicationScope
+    @Named(LastFMClient.CERTIFICATE_PINNER)
+    public CertificatePinner provideCertificatePinner(@NonNull @Named(LastFMClient.API_CONFIGURATION) ApiConfiguration apiConfig) {
+        return new CertificatePinner.Builder()
+                .add(apiConfig.getBaseURL(), apiConfig.getPinners())
+                .build();
     }
 }
