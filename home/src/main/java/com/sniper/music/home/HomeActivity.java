@@ -1,6 +1,7 @@
 package com.sniper.music.home;
 
 import android.app.SearchManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -180,7 +181,12 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appLinksService.generateScreenLink(ScreenLink.DETAILS)));
         intent.putExtra(IntentExtras.EXTRA_MB_ID, selectedItem.getMbID());
         intent.putExtra(IntentExtras.EXTRA_NAME, selectedItem.getName());
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            showError("If you use Instant version of the app please install the full version");
+        }
+
     }
 
     private void initViews() {

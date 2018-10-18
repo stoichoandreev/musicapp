@@ -12,9 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
 
-        manifestPlaceholders = [appLinkScheme:rootProject.appLinkScheme,
-                                appLinkHost:rootProject.appLinkHost,
-                                appLinkDetails:rootProject.appLinkDetailsScreen]
+        manifestPlaceholders = [appLinkScheme   :   rootProject.appLinkScheme,
+                                appLinkHost     :   rootProject.appLinkHost,
+                                appLinkDetails  :   rootProject.appLinkDetailsScreen]
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -23,7 +23,6 @@ android {
     buildTypes {
         debug {
             debuggable true
-            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled false
@@ -36,6 +35,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues true
+        }
     }
 
 }

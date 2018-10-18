@@ -48,5 +48,5 @@ detekt {
     }
 }
 
-apply from: 'dependencies.gradle'
 apply from: 'applinks.gradle'
+apply from: 'dependencies.gradle'

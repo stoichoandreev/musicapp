@@ -4,26 +4,44 @@
     package="com.sniper.music.home">
 
     <application>
+
         <activity
             android:name=".HomeActivity"
             android:launchMode="singleTop">
-            <intent-filter android:order="1">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <action android:name="android.intent.action.MAIN"/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--Instant app seems that does not support custom schemes, but also we don't have such a domain
+                That is why we have different scheme for Home and Details screens-->
+                <data
+                    android:scheme="http"
+                    android:host="${appLinkHost}"
+                    android:pathPrefix="${appLinkHome}" />
+            </intent-filter>
+            <intent-filter>
+            <!--<intent-filter android:order="1">-->
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
+            <meta-data
+                android:name="default-url"
+                android:value="http://com.sniper.music/home" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable">
             </meta-data>
         </activity>
+
         <provider
             android:name="com.sniper.music.home.search.KeywordSuggestionProvider"
             android:authorities="com.sniper.music.home.search.KeywordSuggestionProvider"
             android:exported="false"
             android:enabled="true"/>
+
     </application>
 
 </manifest>

@@ -13,9 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "APP_LINK_BASE_URL", rootProject.appLinkFullBaseUrl
-        buildConfigField "String", "APP_LINK_HOME", rootProject.appLinkHomeScreen
-        buildConfigField "String", "APP_LINK_DETAILS", rootProject.appLinkDetailsScreen
+        buildConfigField "String", "APP_LINK_BASE_URL", "\"$rootProject.appLinkFullBaseUrl\""
+        buildConfigField "String", "APP_LINK_HOME", "\"$rootProject.appLinkHomeScreen\""
+        buildConfigField "String", "APP_LINK_DETAILS", "\"$rootProject.appLinkDetailsScreen\""
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -24,7 +24,6 @@ android {
     buildTypes {
         debug {
             debuggable true
-            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled false
