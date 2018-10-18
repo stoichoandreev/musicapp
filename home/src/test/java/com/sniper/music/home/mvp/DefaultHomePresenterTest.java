@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -23,14 +22,13 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultHomePresenterTest {
 
-    @Spy
+    @Mock
     private HomePresenter.View mockedView;
     @Mock
     private HomeSearchService mockSearchService;
@@ -60,14 +58,6 @@ public class DefaultHomePresenterTest {
         tested.attachView(view);
         //test
         assertNotNull(mockedView);
-    }
-
-    @Test
-    public void test_presenter_detaches_view() {
-        //when
-        tested.detachView();
-        //test
-        assertNull(mockedView);
     }
 
     @Test
