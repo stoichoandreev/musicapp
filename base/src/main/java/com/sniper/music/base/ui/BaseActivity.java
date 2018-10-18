@@ -19,12 +19,10 @@ public abstract class BaseActivity<P extends Presenter, C extends BaseComponent>
     protected abstract C getScreenComponent();
     protected abstract String getComponentKey();
     protected abstract P getPresenter();
-    protected boolean wasSavedInstanceState;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        wasSavedInstanceState = savedInstanceState != null;
     }
 
     @CallSuper

@@ -42,13 +42,6 @@ public class DefaultDetailsPresenter implements DetailsPresenter<DetailsPresente
                 .onExceptionResumeNext(Observable.empty())
                 .subscribe(viewModel -> detailsViewModelSubject.onNext(viewModel)));
 
-        disposables.add(detailsViewModelSubject.subscribe(viewModel -> {
-            if (view != null) {
-                showHideLoadingSubject.onNext(false);
-                view.showDetails(viewModel);
-            }
-        }));
-
         disposables.add(onErrorSubject.subscribe(error -> {
             if (view != null) {
                 showHideLoadingSubject.onNext(false);
@@ -64,11 +57,14 @@ public class DefaultDetailsPresenter implements DetailsPresenter<DetailsPresente
     }
 
     @Override
-    public void attachView(@NonNull DetailsPresenter.View detailsView, boolean wasSavedInstanceState) {
+    public void attachView(@NonNull DetailsPresenter.View detailsView) {
         view = detailsView;
-        if (wasSavedInstanceState && detailsViewModelSubject.getValue() != null) {
-            detailsViewModelSubject.onNext(detailsViewModelSubject.getValue());
-        }
+        disposables.add(detailsViewModelSubject.subscribe(viewModel -> {
+            if (view != null) {
+                showHideLoadingSubject.onNext(false);
+                view.showDetails(viewModel);
+            }
+        }));
     }
 
     @Override

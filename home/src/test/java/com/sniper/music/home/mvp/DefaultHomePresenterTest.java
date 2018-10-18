@@ -55,7 +55,7 @@ public class DefaultHomePresenterTest {
         //given
         final HomePresenter.View view = Mockito.mock(HomePresenter.View.class);
         //when
-        tested.attachView(view, false);
+        tested.attachView(view);
         //test
         assertNotNull(mockedView);
     }
@@ -63,26 +63,14 @@ public class DefaultHomePresenterTest {
     @Test
     public void test_presenter_attaches_view_and_reuse_cache_when_screen_rotate() {
         //given
-        final HomePresenter.View view = Mockito.mock(HomePresenter.View.class);
         final List<HomeAdapterViewModel> list = new ArrayList<>();
         when(mockSearchService.doArtistSearch("some")).thenReturn(Observable.just(list));
         final HomePresenter testedPresenterSpy = Mockito.spy(tested);
         //when
         testedPresenterSpy.fetchSearchResults("some");
-        testedPresenterSpy.attachView(view, true);
+        testedPresenterSpy.attachView(mockedView);
         //test
-        Mockito.verify(mockedView, times(2)).showSearchResults(list);
-    }
-
-    @Test
-    public void test_presenter_attaches_view_and_fetch_search_result_with_empty_query() {
-        //given
-        final HomePresenter.View view = Mockito.mock(HomePresenter.View.class);
-        final HomePresenter testedPresenterSpy = Mockito.spy(tested);
-        //when
-        testedPresenterSpy.attachView(view, false);
-        //test
-        Mockito.verify(testedPresenterSpy).fetchSearchResults(null);
+        Mockito.verify(mockedView).showSearchResults(list);
     }
 
     @Test
@@ -99,6 +87,7 @@ public class DefaultHomePresenterTest {
         final String query = "Cher";
         when(mockSearchService.doArtistSearch(query)).thenReturn(Observable.just(new ArrayList<>()));
         //when
+        tested.attachView(mockedView);
         tested.fetchSearchResults(query);
         //test
         Mockito.verify(mockedView).showLoading(true);
