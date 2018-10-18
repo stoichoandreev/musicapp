@@ -6,22 +6,18 @@
     <application>
         <activity android:name=".DetailsActivity">
             <intent-filter
-                android:order="1"
                 android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <!--<data-->
-                    <!--android:host="${appLinkHost}"-->
-                    <!--android:pathPattern="${appLinkDetails}"-->
-                    <!--android:scheme="${appLinkScheme}"/>-->
                 <data
-                    android:host="com.sniper.music"
-                    android:pathPattern="/details"
-                    android:scheme="music"/>
+                    android:host="${appLinkHost}"
+                    android:pathPattern="${appLinkDetails}"
+                    android:scheme="${appLinkScheme}"/>
             </intent-filter>
         </activity>
     </application>
 
 </manifest>
+
