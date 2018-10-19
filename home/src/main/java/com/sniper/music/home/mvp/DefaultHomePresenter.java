@@ -57,6 +57,13 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
 
     private void setup() {
 
+        disposables.add(viewModelListSubject.subscribe(items -> {
+            if (view != null) {
+                showHideLoadingSubject.onNext(false);
+                view.showSearchResults(items);
+            }
+        }));
+
         disposables.add(onErrorSubject.subscribe(error -> {
             if (view != null) {
                 showHideLoadingSubject.onNext(false);
@@ -81,14 +88,13 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
     }
 
     @Override
-    public void attachView(HomePresenter.View homeView) {
+    public void attachView(HomePresenter.View homeView, boolean wasSavedInstanceState) {
         view = homeView;
-        disposables.add(viewModelListSubject.subscribe(items -> {
-            if (view != null) {
-                showHideLoadingSubject.onNext(false);
-                view.showSearchResults(items);
-            }
-        }));
+        if (wasSavedInstanceState && viewModelListSubject.getValue() != null) {
+            viewModelListSubject.onNext(viewModelListSubject.getValue());
+        } else {
+            fetchSearchResults(searchParamsSubject.getValue());
+        }
     }
 
     @Override
