@@ -37,7 +37,7 @@ public class DefaultHomePresenterTest {
     @Mock
     private CompositeDisposable mockCompositeDisposable;
 
-    private Scheduler mockDebounceWorker = Schedulers.trampoline();
+    private Scheduler debounceWorker = Schedulers.trampoline();
 
     private HomePresenter tested;
 
@@ -47,7 +47,7 @@ public class DefaultHomePresenterTest {
                 mockSearchService,
                 mockRecentSearchesService,
                 mockCompositeDisposable,
-                mockDebounceWorker);
+                debounceWorker);
     }
 
     @Test
@@ -75,17 +75,6 @@ public class DefaultHomePresenterTest {
     }
 
     @Test
-    public void test_presenter_attaches_view_and_fetch_search_result_with_empty_query() {
-        //given
-        final HomePresenter.View view = Mockito.mock(HomePresenter.View.class);
-        final HomePresenter testedPresenterSpy = Mockito.spy(tested);
-        //when
-        testedPresenterSpy.attachView(view, false);
-        //test
-        Mockito.verify(testedPresenterSpy).fetchSearchResults(null);
-    }
-
-    @Test
     public void test_presenter_destroys_all_subscriptions() {
         //when
         tested.destroy();
@@ -106,7 +95,7 @@ public class DefaultHomePresenterTest {
     }
 
     @Test
-    public void test_presenter_does_not_display_progress_loader_when_fetches_search_results() {
+    public void test_presenter_does_not_display_progress_loader_when_fetches_search_results_with_less_query() {
         //given
         final String query = "C";
         //when

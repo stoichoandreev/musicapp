@@ -27,6 +27,12 @@ public abstract class BaseActivity<P extends Presenter, C extends BaseComponent>
         wasSavedInstanceState = savedInstanceState != null;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        wasSavedInstanceState = false;
+    }
+
     @CallSuper
     @Override
     protected void onDestroy() {

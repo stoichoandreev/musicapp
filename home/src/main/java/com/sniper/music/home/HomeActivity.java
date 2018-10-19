@@ -63,8 +63,8 @@ public class HomeActivity extends BaseActivity<HomePresenter, HomeComponent> imp
 
     @Override
     protected void onResume() {
-        super.onResume();
         presenter.attachView(this, wasSavedInstanceState);
+        super.onResume();
     }
 
     @Override
