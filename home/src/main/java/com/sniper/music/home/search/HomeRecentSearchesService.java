@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.sniper.music.base.services.RecentSearchService;
+import com.sniper.music.home.mvp.DefaultHomePresenter;
 
 import javax.inject.Inject;
 
@@ -20,7 +21,7 @@ public class HomeRecentSearchesService implements RecentSearchService {
     @Override
     public void storeRecentSearch(@Nullable Context context,
                                   @Nullable String query) {
-        if (!TextUtils.isEmpty(query) && query.length() > 2) {
+        if (!TextUtils.isEmpty(query) && query.length() >= DefaultHomePresenter.KEY_WORD_MIN_SIZE) {
             final SearchRecentSuggestions suggestions = getRecentSearchesStorage(context,
                     KeywordSuggestionProvider.AUTHORITY,
                     KeywordSuggestionProvider.MODE);

@@ -21,7 +21,7 @@ import io.reactivex.subjects.PublishSubject;
 
 public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
 
-    private static final int KEY_WORD_MIN_SIZE = 2;
+    public static final int KEY_WORD_MIN_SIZE = 2;
     private static final int DEBOUNCE_TIMEOUT = 400;
 
     private PublishSubject<Boolean> onSearchSubject = PublishSubject.create();
@@ -59,7 +59,6 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
 
         disposables.add(viewModelListSubject.subscribe(items -> {
             if (view != null) {
-                showHideLoadingSubject.onNext(false);
                 view.showSearchResults(items);
             }
         }));
@@ -77,11 +76,13 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
             }
         }));
 
-        disposables.add(onSearchSubject.doOnNext(newSearch -> showHideLoadingSubject.onNext(newSearch))
+        disposables.add(onSearchSubject
+                .doOnNext(newSearch -> showHideLoadingSubject.onNext(newSearch))
                 .withLatestFrom(searchParamsSubject, Pair::of)
                 .debounce(DEBOUNCE_TIMEOUT, TimeUnit.MILLISECONDS, debounceWorker)
-                .filter(pair -> pair.getRight() != null && pair.getRight().length() >= KEY_WORD_MIN_SIZE)
+                .filter(pair -> pair.getRight().length() >= KEY_WORD_MIN_SIZE)
                 .switchMap(pair -> searchService.doArtistSearch(pair.getRight())
+                        .doOnComplete(() -> showHideLoadingSubject.onNext(false))
                         .doOnError(error -> onErrorSubject.onNext(error))
                         .onExceptionResumeNext(Observable.empty()))
                 .subscribe(response -> viewModelListSubject.onNext(response)));
@@ -92,8 +93,6 @@ public class DefaultHomePresenter implements HomePresenter<HomePresenter.View> {
         view = homeView;
         if (wasSavedInstanceState && viewModelListSubject.getValue() != null) {
             viewModelListSubject.onNext(viewModelListSubject.getValue());
-        } else {
-            fetchSearchResults(searchParamsSubject.getValue());
         }
     }
 
