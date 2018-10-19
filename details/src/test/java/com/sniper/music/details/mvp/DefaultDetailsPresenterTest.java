@@ -43,7 +43,7 @@ public class DefaultDetailsPresenterTest {
         //given
         final DetailsPresenter.View view = Mockito.mock(DetailsPresenter.View.class);
         //when
-        tested.attachView(view);
+        tested.attachView(view, false);
         //test
         assertNotNull(mockedView);
     }
@@ -51,16 +51,15 @@ public class DefaultDetailsPresenterTest {
     @Test
     public void test_presenter_attaches_view_and_reuse_cache_when_screen_rotate() {
         //given
+        final DetailsPresenter.View view = Mockito.mock(DetailsPresenter.View.class);
         final DetailsViewModel viewModel = new DetailsViewModel.Builder("dad").build();
         when(mockDetailsInfoService.getArtistInformation("some")).thenReturn(Observable.just(viewModel));
         final DetailsPresenter testedPresenterSpy = Mockito.spy(tested);
         //when
-        //we need to call fetchDetails() to store something in the BehaviorSubject and then attachView() will reuse the cache
         testedPresenterSpy.fetchDetails("some");
-        testedPresenterSpy.attachView(mockedView);
-
+        testedPresenterSpy.attachView(view, true);
         //test
-        Mockito.verify(mockedView).showDetails(viewModel);
+        Mockito.verify(mockedView, times(2)).showDetails(viewModel);
     }
 
     @Test
@@ -69,7 +68,7 @@ public class DefaultDetailsPresenterTest {
         final DetailsPresenter.View view = Mockito.mock(DetailsPresenter.View.class);
         final DetailsPresenter testedPresenterSpy = Mockito.spy(tested);
         //when
-        testedPresenterSpy.attachView(view);
+        testedPresenterSpy.attachView(view, false);
         //test
         Mockito.verify(testedPresenterSpy, times(0)).fetchDetails(null);
         Mockito.verify(view, times(0)).showDetails(any());
@@ -90,7 +89,6 @@ public class DefaultDetailsPresenterTest {
         final DetailsViewModel viewModel = new DetailsViewModel.Builder("dad").build();
         when(mockDetailsInfoService.getArtistInformation(query)).thenReturn(Observable.just(viewModel));
         //when
-        tested.attachView(mockedView);
         tested.fetchDetails(query);
         //test
         Mockito.verify(mockedView).showLoading(true);
