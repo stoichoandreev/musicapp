@@ -39,6 +39,8 @@ also run ./gradlew connectedCheck -Pcucumber -Ptags="@smoke" to run all smoke BD
 
 ./gradlew checkstyleMain detektCheck lintDebug
 
+### Full Kotlin version of this approach can be found https://github.com/stoichoandreev/social
+
 
 
 
